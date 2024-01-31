@@ -1,0 +1,211 @@
+.course-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+   
+  .course-card {
+    flex: 0 1 calc(50% - 20px); /* 3 cards per row with gap */
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease-in-out;
+    height: 400px;
+  }
+   
+  .course-card:hover {
+    transform: translateY(-5px);
+  }
+   
+  .course-image img {
+    width: 100%;
+    height: auto; /* Maintain aspect ratio */
+    display: block;
+  }
+   
+  .course-content {
+    padding: 15px;
+    background: #fff;
+    flex-grow: 1; /* Grow to fill available space */
+  }
+   
+  .course-title {
+    
+    color: #333;
+    margin-bottom: 10px;
+    font-weight: bold !important;
+  }
+   
+  .course-description {
+    font-size: 0.875rem;
+    color: #666;
+    margin-bottom: 10px;
+  }
+   
+  .course-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto; /* Push to the bottom */
+  }
+   
+  .course-link {
+    background: rgba(0,0,0,0.05);
+    padding: 10px 20px;
+    border-radius: 5px;
+    width: 200px;
+    font-size: 18px;
+    text-align: center;
+    margin-top: 30px;
+    margin-left: 60px;
+    background-color: #202342;
+    color: white;
+  }
+  a :hover{
+    color:white !important;
+  }
+  .course-time{
+    background: rgba(0,0,0,0.05);
+    padding: 5px 10px;
+    border-radius: 5px;
+    width: 160px;
+    font-size: 14px;
+    text-align: center;
+    margin-top: 10px;
+  }
+   
+    .course-duration, .course-lectures {
+      background: rgba(0,0,0,0.05);
+      padding: 5px 10px;
+      border-radius: 5px;
+    }
+   
+    .default-image {
+      background-color: #959acc;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-size: cover;
+      height: 200px;
+      font-size: 3em;
+  }
+   
+  .demo-inline-calendar-card {
+    background-color: #B2C8DF;
+  }
+   
+  ::ng-deep .mat-calendar-body .special-date .mat-calendar-body-cell-content {
+    border-radius: 50%;
+    background-color: #202342; /* Visible color for testing */
+    color: white;
+  }
+   
+  span.mat-calendar-body-cell-content.mat-focus-indicator.mat-calendar-body-today {
+    color: black;
+    font-weight: bold;
+    font-size: 22;
+  }
+   
+   
+  .assessment-start-date .mat-calendar-body-cell-content {
+    background-color: #959acc !important;
+    color: white !important;
+  }
+   
+   
+  .timeline-container {
+    max-width: 600px;
+    margin: 30px auto;
+    font-family: 'Arial', sans-serif;
+    width: 350px;
+  }
+   
+  .timeline-item {
+    display: block;
+    position: relative;
+    margin-bottom: 30px;
+    padding-left: 20px;
+    border-left: 3px solid #d4d4d4;
+  }
+   
+  .timeline-item:last-child {
+    margin-bottom: 0;
+  }
+   
+  .timeline-icon {
+    position: absolute;
+    left: -13px; /* Centers the icon on the timeline */
+    top: 0;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: #202342;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+  }
+   
+  .timeline-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease-in-out;
+  }
+   
+  .timeline-content:hover {
+    transform: translateY(-5px);
+  }
+   
+  .timeline-date {
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #202342;
+  }
+   
+  .timeline-title {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+  }
+   
+  .timeline-description {
+    font-size: 0.95rem;
+    margin-bottom: 10px;
+    color: #666;
+  }
+   
+  .add-submission {
+    background: #202342;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    transition: background-color 0.3s;
+    outline: none;
+  }
+   
+  .add-submission:hover {
+    background-color: #202342;
+    cursor: pointer;
+  }
+   
+  /* Optional: Add some padding at the top of the timeline */
+  .timeline-container::before {
+    content: '';
+    display: block;
+    height: 20px;
+  }
+  .welcome{
+    background-color: white;
+    color: #202342;
+    margin: 25px 10px 30px 10px;
+    font-size: 20px !important;
+    text-align: justify;
+  }
+   

@@ -1,0 +1,183 @@
+<app-admin-header></app-admin-header>
+<app-admin-sidebar></app-admin-sidebar>
+<div class="main-container">
+    <div class="pd-ltr-20">
+       
+        <div class="row">
+        </div>
+        <button mat-stroked-button color="primary"  type="submit" id="courses" value="Create" (click)= OpenCreateDialog() style="margin-bottom:10px;">Create New Course</button>
+        <a mat-stroked-button color="primary" id="courses"  type="submit" value="Create" style="margin-left: 10px;margin-bottom:10px; padding-left: 30px;"   routerLink="/admin/CourseDetails" >View Details</a>
+        <div class="row">
+            
+            <div class="col-xl-8 mb-30" *ngFor="let course of _adminService.courses ">
+                <div class="card-box height-100-p pd-20">
+                    <h2 class="h4 mb-20">{{course.coursename}}</h2>
+                    <div id="chart5"></div>
+                    <section>
+                        <div class="example-button-row row" color="primary" >
+                          <button mat-stroked-button color="primary" id="courses"  (click)= OpenUpdateDialog(course)>Update Course</button>
+                          <button mat-stroked-button color="primary" id="courses" (click)= OpenConfirmDialog(course.courseid)>Delete Course</button>
+                        </div>
+                      </section>
+                   
+
+                </div>
+               
+            </div>
+       
+        </div>
+        
+    </div>
+</div>
+
+
+
+
+<ng-template #CreateDialog>
+    <form [formGroup]="CreateCourseForm">
+        <div class="example-container">
+            <mat-form-field>
+              <mat-label>Enter Course Name</mat-label>
+              <input matInput  placeholder="Course Name" formControlName="coursename" required>
+              <mat-error *ngIf="CreateCourseForm.controls['coursename'].hasError('required')">Course Name is required</mat-error>
+            </mat-form-field>
+          </div>
+
+        <mat-form-field>
+          <mat-label>Select Program Name</mat-label>
+          <select matNativeControl required formControlName="programid">
+            <option *ngFor="let program of _adminService.programss" value={{program.programid}}>{{program.trackname}}</option>
+          </select>
+          <mat-error *ngIf="CreateCourseForm.controls['programid'].hasError('required')">Program Name is required</mat-error>
+        </mat-form-field>
+        
+
+
+          <div class="example-container">
+            <mat-form-field>
+              <mat-label>Enter Start Date</mat-label>
+              <input matInput   type="date" placeholder="Start Date" formControlName="startdate" required>
+              <mat-error *ngIf="CreateCourseForm.controls['startdate'].hasError('required')">Start date is required</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="example-container">
+            <mat-form-field>
+              <mat-label>Enter End Date</mat-label>
+              <input matInput  type="date" placeholder="End Date" formControlName="enddate" required>
+              <mat-error *ngIf="CreateCourseForm.controls['enddate'].hasError('required')">End Date is required</mat-error>
+            </mat-form-field>
+          </div>
+
+       
+       
+          <div class="example-container">
+            <label  style="background-color: lightgray;" >Upload Image</label>
+            <input type="file" (change)="UploadImages($event)" style="margin-bottom: 20px;margin-left: 50px;">
+          </div>
+
+          <div class="example-container">
+            <mat-form-field>
+              <mat-label>Enter Number of sections</mat-label>
+              <input matInput placeholder="Number of sections" formControlName="numberofsections" required>
+              <mat-error *ngIf="CreateCourseForm.controls['numberofsections'].hasError('required')">Number of sections is required</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="example-container">
+            <mat-form-field>
+              <mat-label>Enter Prerequisite</mat-label>
+              <input matInput placeholder="Prerequisite" formControlName="prerequisite" required>
+              <mat-error *ngIf="CreateCourseForm.controls['prerequisite'].hasError('required')">Prerequisite is required</mat-error>
+            </mat-form-field>
+          </div>
+<section>
+<div class="example-button-row" color="primary" >
+<button style="margin-left: 100px;" mat-stroked-button color="primary" mat-dialog-close  type="submit" value="Create" (click)= CreateCourse()>Create New Course</button>
+</div>
+</section>
+    
+
+    </form>
+</ng-template>
+
+
+
+<ng-template #ConfirmationDialog>
+<h1 mat-dialog-title>Delete Course</h1>
+<div mat-dialog-content>
+  Would you like to delete the course?
+</div>
+<div mat-dialog-actions>
+  <button id="courses" mat-button mat-dialog-close="no" cdkFocusInitial>No</button>
+  <button id="courses" mat-button mat-dialog-close="yes" >Yes</button>
+</div>
+</ng-template>
+
+
+<ng-template #UpdateDialog>
+    <form [formGroup]="UpdateCourseForm">
+        <div class="example-container">
+            <mat-form-field>
+              <mat-label>Enter Course Name</mat-label>
+              <input matInput placeholder="Course Name" formControlName="coursename" required>
+              <mat-error *ngIf="UpdateCourseForm.controls['coursename'].hasError('required')">Course Name is required</mat-error>
+            </mat-form-field>
+          </div>
+
+        <mat-form-field>
+          <mat-label>Select Program Name</mat-label>
+          <select matNativeControl required formControlName="programid">
+            <option *ngFor="let program of _adminService.programss" value={{program.programid}}>{{program.trackname}}</option>
+          </select>
+          <mat-error *ngIf="UpdateCourseForm.controls['programid'].hasError('required')">Program Name is required</mat-error>
+        </mat-form-field>
+        
+
+
+          <div class="example-container">
+            <mat-form-field>
+              <mat-label>Enter Start Date</mat-label>
+              <input matInput  placeholder="Start Date" formControlName="startdate" required>
+              <mat-error *ngIf="UpdateCourseForm.controls['startdate'].hasError('required')">Start date is required</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="example-container">
+            <mat-form-field>
+              <mat-label>Enter End Date</mat-label>
+              <input matInput placeholder="End Date" formControlName="enddate" required>
+              <mat-error *ngIf="UpdateCourseForm.controls['enddate'].hasError('required')">End Date is required</mat-error>
+            </mat-form-field>
+          </div>
+
+          
+          <div class="example-container">
+            <label  style="background-color: lightgray;" >Upload Image</label>
+            <input type="file" (change)="UploadImages($event)" style="margin-bottom: 20px;margin-left: 50px; " formControlName="imagepath">
+          </div>
+
+          <div class="example-container">
+            <mat-form-field>
+              <mat-label>Enter Number of sections</mat-label>
+              <input matInput placeholder="Course Name" formControlName="numberofsections" required>
+              <mat-error *ngIf="UpdateCourseForm.controls['numberofsections'].hasError('required')">Number of sections is required</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="example-container">
+            <mat-form-field>
+              <mat-label>Enter Prerequisite</mat-label>
+              <input matInput placeholder="Course Name" formControlName="prerequisite" required>
+              <mat-error *ngIf="UpdateCourseForm.controls['prerequisite'].hasError('required')">Prerequisite is required</mat-error>
+            </mat-form-field>
+          </div>
+<section>
+<div class="example-button-row" color="primary" >
+<button style="margin-left: 100px;" id="courses" mat-stroked-button color="primary" mat-dialog-close  type="submit" value="Update" (click)= UpdateCourse()>Update Course</button>
+</div>
+</section>
+    
+
+    </form>
+</ng-template>

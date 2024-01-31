@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "msF5kwiXbBoAwxMnLZQ+lp+E7uj2geOSDrZRFVkuIc0=",
+  "Source": "CertifyHub.API",
+  "BasePath": "_content/CertifyHub.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

@@ -1,0 +1,119 @@
+
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "ball-fussions" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
+<app-admin-header></app-admin-header>
+<app-admin-sidebar></app-admin-sidebar>
+<div class="main-container">
+    <div class="row">
+        <div class="job-card">
+            <div class="job-title-section">
+            <h2 class="job-title">Students Management Hub</h2>
+        </div>
+    </div>
+
+
+    <button mat-button (click)="onGetSectionReport()" id="tab">Get Section Report</button>
+    <button mat-button id="tab" (click)="OpenAddDialog()">Add New Student</button>
+
+
+
+    <div class="job-card row"  *ngFor="let student of this._adminService.sectionStudents">
+        <div class="col-2">
+            <div class="d-flex align-items-center">
+                <img [src]="student.imagepath ? '../../../assets/Images/' + student.imagepath : getSectionImagePath(student)" [alt]="getAltText(student)" class="avatar-photo rounded-circle" style="width: 150px; height: 150px;">
+              </div>
+              
+        </div>
+        <div class="col-2 d-flex flex-column justify-content-center">
+            <h2 class="job-title" id="trackname">{{student.firstname}} {{student.lastname}}</h2>
+        </div>
+        <div class="col-2 d-flex flex-column justify-content-center">
+            <button class="courses" mat-button  ><a href="mailto:{{student.username}}">Email</a></button>
+        </div>
+        <div class="col-3 d-flex flex-column justify-content-center" id="lecture">
+            <!-- <button class="courses" mat-button  (click)="GenerateCertificate(student.userid, this.sectionId)">Generate a Certificate</button> -->
+            <button class="courses" mat-button  (click)="CheckCoursePeriod(student.userid, this.sectionId)">Generate a Certificate</button>
+        </div>
+        <div class="col-3 d-flex flex-column justify-content-center" id="lecture">
+            <!-- <button class="courses" mat-button  (click)="GenerateCertificate(student.userid, this.sectionId)">Generate a Certificate</button> -->
+            <button class="courses" mat-button  (click)="GetCertificate(student.userid)">Download Certificate</button>
+        </div>
+
+
+
+        <button class="delete" (click)="OpenConfirmDeleteDialog(student.userid, this.sectionId)">
+            <i class="fa-solid fa-xmark" ></i>
+        </button>
+        <!-- <div class="col-2 d-flex flex-column justify-content-center">
+            <button id="courses" mat-button (click)="GetStudents(section.sectionid)" >View Students</button>
+        </div> -->
+    </div>
+
+</div>
+
+
+
+
+
+<ng-template #addStudent>
+    <div class="form-container">
+        <form [formGroup]="CreateStudentForm">
+            <ul class="profile-edit-list row">
+                <li class="weight-500 col-md-12">
+                     <div  class="row ">
+                        <h2 style="margin-left:110px;">Add  New Student</h2>
+                     </div>
+                     <div class="form-group col-md-6">
+                        <div >
+                            <mat-form-field appearance="fill" style="width:268px; margin-left:20px">
+                                <mat-label>Select Student</mat-label>
+                                <mat-select formControlName="studentid" required>
+                                    <mat-option *ngFor="let student of this._adminService.allStudents" [value]="student.logins[0].userid">
+                                        {{ student.firstname }} {{ student.lastname }}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                  <div class="row" style="margin-left:60px">
+                            <input hidden class="form-control form-control-lg date-picker" type="text" formControlName="sectionid">
+                 
+            
+                    <div class="form-group mb-0" >
+                        <input  type="button" class="btn" id="createbutton" value="Add" (click)="AddStudent()" [disabled]="CreateStudentForm.invalid">
+                    </div> 
+
+                    <div class="form-group mb-0">
+                        <input  type="button" class="btn btn-secondary" id="cancelbutton" value="Cancel" (click)="CloseAddDialog()" >
+                    </div> 
+                </div>
+               
+                </li>
+            </ul>                                              
+        </form>
+   </div>
+</ng-template> 
+
+
+
+<ng-template #deleteStudent>
+    <!-- <form [formGroup]="DeleteStudentForm">
+        <ul class="profile-edit-list row">
+           
+            <li class="weight-500 col-md-12">
+                <input hidden class="form-control form-control-lg date-picker" type="text" formControlName="sectionid">
+                <input hidden class="form-control form-control-lg date-picker" type="text" formControlName="studentid">  </li></ul></form>-->
+
+    <h1 mat-dialog-title style="margin-left:70px">Delete Student</h1>
+    <div mat-dialog-content>
+      Would you like to delete the student?
+    </div>
+    <div mat-dialog-actions>
+      <button mat-button mat-dialog-close="no"  cdkFocusInitial>No</button>
+      <button  mat-button mat-dialog-close="yes" >Yes</button>
+    </div>
+
+   
+     
+</ng-template>
+

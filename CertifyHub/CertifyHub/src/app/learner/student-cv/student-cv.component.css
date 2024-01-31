@@ -1,0 +1,117 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: #444;
+    line-height: 1.6;
+    font-family: 'Prompt', sans-serif;
+}
+
+.cv-container {
+    background: white;
+    width: calc(100% - 40px);
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 30px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 2px solid black;
+    font-family: 'Prompt', sans-serif;
+    height: 299mm;
+}
+p{
+    text-align: justify;
+}
+.cv-header {
+    text-align: center;
+    margin-bottom: 50px;
+    font-family: 'Prompt', sans-serif;
+}
+.cv-header h1 {
+    margin: 0;
+    color: #333;
+    font-family: 'Prompt', sans-serif;
+    font-size: 28px;
+}
+.cv-section {
+    border-bottom: 2px solid #efefef;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+.cv-section:last-child {
+    border-bottom: 0;
+    font-family: 'Prompt', sans-serif;
+}
+.cv-section-title {
+    font-size: 24px;
+    color: black;
+    border-left: 4px solid #6cace4;
+    padding-left: 10px;
+    margin: 0 0 10px 10;
+    font-family: 'Prompt', sans-serif;
+}
+.social-media {
+    text-align: center;
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+    font-family: 'Prompt', sans-serif;
+}
+.social-media li {
+    display: inline;
+    margin: 0 10px;
+    font-family: 'Prompt', sans-serif;
+
+}
+.social-media a {
+    text-decoration: none;
+    color: #6cace4;
+
+}
+.social-media a:hover {
+    text-decoration: none;
+    font-family: 'Prompt', sans-serif;
+}
+.cv-contact-info, .cv-education, .cv-experience, .cv-skills {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    font-family: 'Prompt', sans-serif;
+}
+.cv-contact-info li, .cv-education li, .cv-experience li, .cv-skills li {
+    margin-bottom: 5px;
+    font-family: 'Prompt', sans-serif;
+}
+.cv-contact-info li:hover, .cv-education li:hover, .cv-experience li:hover, .cv-skills li:hover {
+    background-color: #f9f9f9;
+    font-family: 'Prompt', sans-serif;
+}
+.cv-contact-info li strong, .cv-education li strong, .cv-experience li strong, .cv-skills li strong {
+    color: #333;
+    font-family: 'Prompt', sans-serif;
+}
+i.fa-brands.fa-linkedin {
+    background-color: #6cace4;
+    padding: 3px;
+}
+i.fa-brands.fa-github {
+    font-size: 22px;
+}
+#linkedin{
+    color: white;
+}
+#cv{
+    position: absolute;
+    left: 1250px;
+    top: 20px;
+    background-color: #6cace4;
+    color: white;
+    border:solid 15px #6cace4;
+    border-radius: 20px;
+}
+strong{
+    font-size: 18px;
+}
+li, h3{
+    font-size: 16px;
+    font-family: 'Prompt', sans-serif;
+}

@@ -1,0 +1,35 @@
+<app-student-header></app-student-header>
+<app-student-sidebar></app-student-sidebar>
+
+<div class="main-container">
+    <div class="row">
+        <div class="job-card">
+            <div class="job-title-section">
+            <h2 class="job-title">{{this._learnerService.myCourses[0].trackname}}</h2>
+            <span class="job-type">Program Period: {{this._learnerService.myCourses[0].programperiod}}</span>
+            </div>
+            <div class="job-details-section">
+            <div class="job-salary col-8">
+                {{this._learnerService.myCourses[0].description}}
+            </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <mat-card class="course-card col-4" *ngFor="let course of this._learnerService.myCourses">
+            <img [src]="'../../../assets/Images/' + course.courses[0].imagepath"  style="width: cover !important; height: 320px !important; padding: 25px 0px 25px 0px;" mat-card-image alt="C#" />
+
+            <mat-card-content>
+            <mat-progress-bar mode="determinate" value="0"></mat-progress-bar>
+            <div class="author-info">
+            <span class="name">{{course.courses[0].coursename}}</span>
+            <!-- <span class="completion-rate">0% COMPLETE</span> -->
+            <button mat-button (click)=GoToSection(course.courses[0].sections[0].sectionid,course.courses[0].courseid) >View</button>
+            </div>
+            <!-- <div>
+                <button mat-button >View</button>
+            </div> -->
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

@@ -1,0 +1,41 @@
+
+<nav>
+    <span style="color: white; position: relative; right: 400px ; font-size: 37px;">CertifyHub</span>
+   <span style="color: white; position: relative; left: 420px ;"> <a routerLink="/CertfyHub/HomePage">Home</a>
+    <a routerLink="/CertfyHub/HomePage#aboutus">About Us</a>
+    <a routerLink="/auth/login">Login</a></span>
+</nav>
+<div style="overflow-x: hidden;">
+    <div class="head" id="aboutus">About Us</div>
+<div class="row aboutus">
+    <div class="col-4"> <img  width="300px" height="300px" src="../../../assets/Images/CertifyHub.png" alt="" class="light-logo im"></div>
+    <div class="col-8 cert">
+        CertifyHub LMS is a robust Learning Management System (LMS) designed to provide an advanced and user-friendly platform for the delivery, management, and tracking of training programs. Tailored to meet the diverse needs of educational institutions, businesses, and organizations, CertifyHub LMS streamlines the administration and delivery of learning experiences. The system encompasses key components, including user authentication for secure access, efficient courses management, thorough assessment and evaluation tools, attendance management functionalities, and comprehensive progress tracking and reporting features. CertifyHub LMS empowers administrators, instructors, and learners alike to engage seamlessly in the learning process. Additionally, the system facilitates the generation of certificates upon successful completion of courses, adding a credentialing aspect to the learning journey. With CertifyHub LMS, education and training are elevated through a technology-driven, centralized platform that enhances the overall learning experience for all stakeholders.
+    </div> 
+</div>
+<div class="head">Our Students</div>
+<div class="row container">
+    <mat-card class="course-card col-3" *ngFor="let student of this._learnerService.studentsCv">
+        <img src="../../../assets/Images/{{student.imagepath}}" style=" height: 300px !important; padding: 25px 0px 25px 0px;" mat-card-image alt="C#" />
+        <mat-card-content>
+        <mat-progress-bar mode="determinate"></mat-progress-bar>
+        <div class="author-info">
+        <span class="name">{{student.firstname}} {{student.lastname}} </span>
+        <!-- <span class="completion-rate">0% COMPLETE</span> -->
+        <button mat-button class="courses" (click)="Cv(student.userid)" >View CV</button>
+        </div>
+        <!-- <div>
+            <button mat-button >View</button>
+        </div> -->
+        </mat-card-content>
+    
+    </mat-card>
+    
+</div>
+
+
+</div>
+
+<footer>
+    &copy; 2024 CertifyHub LMS. All rights reserved.
+</footer>

@@ -1,0 +1,197 @@
+<app-admin-header></app-admin-header>
+<app-admin-sidebar></app-admin-sidebar>
+<ng-template #createCourse>
+    <div class="form-container">
+        <form [formGroup]="CreateCourseForm">
+            <ul class="profile-edit-list row">
+                <li class="weight-500 col-md-12">
+                    <div class="row">
+                        <h2 style="margin-left:145px;">Create a New Course</h2>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label>Course Name</label>
+                            <input class="form-control form-control-lg" type="text" name="coursename" id="coursename" matInput formControlName="coursename" placeholder="Course Name" [ngClass]="{'isInvalid': CreateCourseForm.get('coursename')?.invalid}">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <input hidden value="c" class="form-control form-control-lg" type="text" name="prerequisite" id="prerequisite" matInput formControlName="prerequisite" placeholder="Prerequisite" [ngClass]="{'isInvalid': CreateCourseForm.controls['prerequisite'].invalid}">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label>Start Date</label>
+                            <input class="form-control form-control-lg" type="date" name="startdate" id="startdate" matInput formControlName="startdate" placeholder="Start Date" [ngClass]="{'isInvalid': CreateCourseForm.controls['startdate'].invalid}">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label>End Date</label>
+                            <input class="form-control form-control-lg" type="date" name="enddate" id="enddate" matInput formControlName="enddate" placeholder="End Date" [ngClass]="{'isInvalid': CreateCourseForm.controls['enddate'].invalid}">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <input hidden value="1" class="form-control form-control-lg" type="text" name="numberofsections" id="numberofsections" matInput formControlName="numberofsections" placeholder="Number of Sections" [ngClass]="{'isInvalid': CreateCourseForm.controls['numberofsections'].invalid}">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <input hidden value={{this.programId}} class="form-control form-control-lg" type="text" name="programid" id="programid" matInput formControlName="programid" placeholder="Number of Sections" [ngClass]="{'isInvalid': CreateCourseForm.controls['programid'].invalid}">
+                        </div>
+                    </div>
+                    
+                    <div class="row" style="margin-left:120px;">
+                        <div class="form-group mb-0">
+                            <input type="button" class="btn" id="createbutton" value="Save" (click)="CreateCourse()" [disabled]="CreateCourseForm.invalid">
+                        </div>
+                        <div class="form-group mb-0">
+                            <input type="button" class="btn btn-secondary" id="cancelbutton" value="Cancel" (click)="CloseCreateDialog()">
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </form>
+    </div>
+</ng-template>
+
+
+<ng-template #updateCourse>
+    <div class="form-container">
+        <form [formGroup]="UpdateCourseForm">
+            <ul class="profile-edit-list row">
+                <li class="weight-500 col-md-12">
+                    <div class="row">
+                        <h2 style="margin-left:175px;">Update Course</h2>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <input hidden class="form-control form-control-lg" type="text" name="courseid" id="courseid" matInput formControlName="courseid" placeholder="Course Name" [ngClass]="{'isInvalid': UpdateCourseForm.get('courseid')?.invalid}">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label>Course Name</label>
+                            <input class="form-control form-control-lg" type="text" name="coursename" id="coursename" matInput formControlName="coursename" placeholder="Course Name" [ngClass]="{'isInvalid': UpdateCourseForm.get('coursename')?.invalid}">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <input hidden value="c" class="form-control form-control-lg" type="text" name="prerequisite" id="prerequisite" matInput formControlName="prerequisite" placeholder="Prerequisite" [ngClass]="{'isInvalid': UpdateCourseForm.controls['prerequisite'].invalid}">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label>Start Date</label>
+                            <input class="form-control form-control-lg" type="date" name="startdate" id="startdate" matInput formControlName="startdate" placeholder="Start Date" [ngClass]="{'isInvalid': UpdateCourseForm.controls['startdate'].invalid}">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label>End Date</label>
+                            <input class="form-control form-control-lg" type="date" name="enddate" id="enddate" matInput formControlName="enddate" placeholder="End Date" [ngClass]="{'isInvalid': UpdateCourseForm.controls['enddate'].invalid}">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <input hidden value="1" class="form-control form-control-lg" type="text" name="numberofsections" id="numberofsections" matInput formControlName="numberofsections" placeholder="Number of Sections" [ngClass]="{'isInvalid': UpdateCourseForm.controls['numberofsections'].invalid}">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <input hidden value={{this.programId}} class="form-control form-control-lg" type="text" name="programid" id="programid" matInput formControlName="programid" placeholder="Number of Sections" [ngClass]="{'isInvalid': UpdateCourseForm.controls['programid'].invalid}">
+                        </div>
+                    </div>
+                    <!-- <div class="row">
+                        <div class="form-group col-md-12">
+                            <label>Course Image</label>
+                            <input class="form-control form-control-lg" type="file" (change)="UploadImage($event)" name="imagepath" placeholder="Image Path" id="imagepath" matInput formControlName="imagepath" [ngClass]="{'isInvalid': UpdateCourseForm.controls['imagepath'].invalid}">
+                        </div>
+                    </div> -->
+                    <div class="row" style="margin-left:120px;">
+                        <div class="form-group mb-0">
+                            <input type="button" class="btn" id="createbutton" value="Save" (click)="UpdateCourse()" [disabled]="UpdateCourseForm.invalid">
+                        </div>
+                        <div class="form-group mb-0">
+                            <input type="button" class="btn btn-secondary" id="cancelbutton" value="Cancel" (click)="CloseCreateDialog()">
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </form>
+    </div>
+</ng-template>
+
+<div class="main-container">
+    <div class="row">
+        <div class="job-card">
+            <div class="job-title-section">
+            <h2 class="job-title">Courses Management Hub</h2>
+        </div>
+    </div>
+    <div class="col-2 d-flex flex-column justify-content-center butt">
+        <button id="sections" mat-button (click)="OpenCreateDialog()" >Create New Course</button>
+</div>
+    <div class="row">
+        <mat-card class="course-card col-4" *ngFor="let course of this._adminService.programCourses">
+            <!-- <img src="../../../assets/Images/{{course.imagepath}}" style="width: cover !important; height: 320px !important; padding: 25px 0px 25px 0px;" mat-card-image alt="C#" /> -->
+            <div class="profile-photo" style="margin-top: 20px; height: 200px; border-radius: 0;">
+                <a href="modal" data-toggle="modal" [attr.data-target]="'#modal' +  course.courseid" #updateModalRef class="edit-avatar" style="margin-right:15px ;">
+                    <i class="fa fa-pencil" style="color: #202320;"></i>
+                </a>
+
+                <img [src]="'../../../assets/Images/' + course.imagepath" alt="" class="avatar-photo" style="width: 190px !important; height: 190px !important;">
+            
+                <div class="modal fade" [attr.id]="'modal' +  course.courseid" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <form (ngSubmit)="UpdateImage( course.courseid)" >
+                                <div class="modal-body pd-5">
+                                    <div class="img-container">
+                                        <input type="file" (change)="UploadImage($event,  course.courseid)" [formControl]="imageFormControl" required/>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <input type="submit" value="Update" class="btn btn-primary" [disabled]="imageFormControl.invalid">
+                                    <button type="button" class="btn btn-default close" data-dismiss="modal">Close</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <mat-card-content>
+            <mat-progress-bar mode="determinate"></mat-progress-bar>
+            <div class="author-info">
+            <span class="name">{{course.coursename}}</span>
+            <!-- <span class="completion-rate">0% COMPLETE</span> -->
+            <button mat-button (click)=GoToSection(course.courseid) >View Sections</button>
+            </div>
+            <!-- <div>
+                <button mat-button >View</button>
+            </div> -->
+            </mat-card-content>
+            <button class="delete" (click)="OpenConfirmDeleteDialog(course.courseid)">
+                <i class="fa-solid fa-xmark" ></i>
+            </button>
+    
+            <button class="update" (click)="OpenUpdateDialog(course)">
+                <i class="fa-regular fa-pen-to-square"></i>
+            </button>
+        </mat-card>
+        
+    </div>
+</div>
+<ng-template #deleteCourse>
+ 
+    <h1 mat-dialog-title style="margin-left:70px">Delete Course</h1>
+    <div mat-dialog-content>
+      Would you like to delete the course?
+    </div>
+    <div mat-dialog-actions>
+      <button class="butt" mat-button mat-dialog-close="no"  cdkFocusInitial>No</button>
+      <button  class="butt" mat-button mat-dialog-close="yes" >Yes</button>
+    </div>
+     
+</ng-template>

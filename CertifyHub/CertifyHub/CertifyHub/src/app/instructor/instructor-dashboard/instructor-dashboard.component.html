@@ -1,0 +1,140 @@
+<app-instructor-header></app-instructor-header>
+<app-instructor-sidebar></app-instructor-sidebar>
+ 
+ 
+<div class="main-container">
+    <div class="xs-pd-20-10 pd-ltr-20">
+        <div class="row">
+            <div class="col-xl-6 offset-xl-3 mb-30" style="position:absolute; margin-top: 160px; margin-left: 520px;">
+                <div class="card-box mb-30 leaderboard">
+                    <h4 class="header-title mb-20" style="text-align: center; color:white; font-size: 20px;">
+                        <i class="fa-solid fa-medal" style="font-size:20px;"></i>
+                        Top Students Leaderboard
+                    </h4>
+                    <ol>
+                        <li *ngFor="let student of topStudents; let i = index" class="leaderboard-item" >
+                            <mark style="background-color:#84A9AC; color: white;">{{ student.studentName }}</mark>
+                            <small>{{ student.attendanceCount }}</small>
+                        </li>
+                
+                    </ol>
+                </div>
+
+                     
+            </div>
+ 
+            <div class="col-xl-6 offset-xl-3 mb-30" style="position: absolute; margin-top: 350px; margin-left: 270px;">
+                <div class="col-xl-6 mb-30" style="margin-left:600px" >
+                    <div class="card-box mb-10" style="max-width: 285px;">
+                        <div class="row">
+                            <div style="display: inline-block; width: 189px; padding:10px 10px 10px 10px; margin-left:70px">
+                                <canvas #myChart
+                                        baseChart
+                                        [data]="pieChartData"
+                                        [type]="pieChartType"
+                                        [options]="pieChartOptions">
+                                </canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+ 
+       
+            <div class="col-xl-3 mb-30">
+                <div class="card-box height-100-p widget-style1">
+                    <div class="d-flex flex-wrap align-items-center">
+                        <div class="progress-data">
+ 
+                            <i class="fa-solid fa-user-graduate iconStyle" id="icon-background"
+                                     style="background-color: #407088"
+                                ></i>
+                            </div>
+                        <div class="widget-data">
+                            <div class="h4 mb-0" id="countColor">
+                                {{ _instructorService.studentCount }}
+                            </div>
+ 
+ 
+                            <div class="weight-600 font-14"  id="countColor">Learners</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 mb-30">
+                <div class="card-box height-100-p widget-style1">
+                    <div class="d-flex flex-wrap align-items-center">
+                        <div class="progress-data">
+                            <i class="icon-copy ion-android-stopwatch iconStyle" id="icon-background"
+                            style=" background-color: #D7C0AE !important;"
+                            ></i>
+                            <div id="chart3"></div>
+                        </div>
+                        <div class="widget-data">
+                            <!-- <i class="icon-copy dw dw-folder"
+                            style="font-size: 40px !important; transform: scale(1.5) !important; color: #e83e8c !important;"></i> -->
+                         
+                         
+                            <div class="h4 mb-0" id="countColor">
+                                {{_instructorService.sectionCount }}
+ 
+                            </div>
+                            <div class="weight-600 font-14"  id="countColor">Sections</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 mb-30">
+                <div class="card-box height-100-p widget-style1">
+                    <div class="d-flex flex-wrap align-items-center">
+                        <div class="progress-data">
+ 
+                            <span class="icon-copy ti-book iconStyle" id="icon-background"
+                            style=" background-color: #959acc !important;"></span>
+                            <div id="chart4"></div>
+                        </div>
+                        <div class="widget-data">
+                            <div class="h4 mb-0"  id="countColor">
+                       {{ _instructorService.courseCount }}
+                            </div>
+                            <div class="weight-600 font-14"  id="countColor">Courses</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+ 
+           
+        </div>
+       
+ 
+            <div class="col-xl-6" *ngFor="let section of _instructorService.instructorSections">
+           
+ 
+            </div>
+ 
+            <div class="course-section col-xl-8" >
+                <div *ngFor="let section of _instructorService.instructorSections" class="course-card">
+                  <div  class="course-image">
+                    <img [src]="getSectionImagePath(section)" [alt]="getAltText(section)"
+                    style="width: cover !important; height: 260px ">
+                  </div>
+                  <ng-template #noImage>
+                  </ng-template>
+                  <div class="course-content">
+                    <h2 class="course-title">{{section.course.coursename}}</h2>
+                   
+                    <div class="course-info">
+                   
+                    </div>
+                    <div class="course-info">
+                      <button (click)="ViewSection(section.sectionid)">View Section</button>
+                    </div>
+                   
+                  </div>
+ 
+        </div>
+    </div>
+</div>
+ 
+ 
+ 

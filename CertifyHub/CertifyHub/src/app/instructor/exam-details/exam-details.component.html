@@ -1,0 +1,320 @@
+<app-instructor-header></app-instructor-header>
+<app-instructor-sidebar></app-instructor-sidebar>
+<!-- <div class="main-container">
+    <div class="row">
+        <div class="job-card">
+            <div class="job-title-section">
+                <h2 class="job-title">{{this.assessment.title}} - Details</h2>
+            </div>
+        </div>
+        <div class="col-2 d-flex flex-column justify-content-center">
+            <button id="sections" mat-button (click)="OpenCreateDialog()">Create New Question</button>
+        </div>
+
+        <div class="job-card row" id="card" *ngIf="this._instructorService.assessmentQuestions.length === 0">
+            <h2 class="test">No Questions Yet!</h2>
+        </div>
+
+        <div class="job-card row" id="card" *ngFor="let assessment of this._instructorService.assessmentQuestions">
+            <div *ngFor="let question of assessment.questions">
+                <div class="col-10 d-flex flex-column justify-content-center">
+                    <h2 class="job-title" id="trackname" style="color: #202342;">
+                        <i class="fa-solid fa-circle-question"></i><span class="col-1"></span> {{question.questiontext}}
+                    </h2>
+                </div>
+                <div class="col-2 d-flex flex-column justify-content-center">
+                    <h2 class="job-title" id="trackname"><span class="job-type">Out of: {{question.marks}} Marks</span></h2>
+                </div>
+                <span>
+                    <button class="update" (click)="OpenUpdateDialog(question)">
+                        <i class="fa-regular fa-pen-to-square"></i>
+                    </button>
+                    <button class="delete" (click)="OpenConfirmDeleteDialog(question.questionid)">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                    <button class="add" (click)="OpenCreateAnswerDialog(question.questionid)">
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+                </span>
+
+                <div class="job-card2 row" id="card2" *ngFor="let answer of question.answers">
+                    <h4 class="job-title2" id="trackname2" style="color: #202342; font-size: 15px; font-weight: 500;">
+                        <i class="fa-solid fa-circle-check" style="color: green;" *ngIf="answer.iscorrect==='true'"></i>
+                        <i class="fa-solid fa-circle-xmark" style="color: red;" *ngIf="answer.iscorrect==='false'"></i>
+                        <span class="col-1"></span> {{answer.answertext}}
+                    </h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<div class="main-container">
+    <div class="row">
+      <div class="job-card">
+        <div class="job-title-section">
+          <h2 class="job-title">{{this.assessment.title}} - Details</h2>
+        </div>
+      </div>
+  
+      <div class="col-2 d-flex flex-column justify-content-center">
+        <button id="sections" mat-button (click)="OpenCreateDialog()">Create New Question</button>
+      </div>
+  
+      <div class="job-card row" *ngIf="this._instructorService.assessmentQuestions.length === 0">
+        <h2 class="test">No Questions Yet!</h2>
+      </div>
+  
+      <div class="job-card row" *ngFor="let assessment of this._instructorService.assessmentQuestions">
+        <div *ngFor="let question of assessment.questions">
+          <div class="col-12 row d-flex flex-column ">
+            <span><h2 class="job-title" style="color: #202342;">
+                <i class="fa-solid fa-circle-question"></i><span class="col-1"></span> {{question.questiontext}}
+                
+              </h2></span>
+            <span class="job-type">Out of: {{question.marks}} Marks</span>
+          </div>
+  
+          <span>
+            <button class="update" (click)="OpenUpdateDialog(question)">
+              <i class="fa-regular fa-pen-to-square"></i>
+            </button>
+            <button class="delete" (click)="OpenConfirmDeleteDialog(question.questionid)">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+            <button class="add" (click)="OpenCreateAnswerDialog(question.questionid)">
+              <i class="fa-solid fa-plus"></i>
+            </button>
+          </span>
+  
+          <div *ngIf="question.answers[0]!==null">
+            <div class="job-card2 row" *ngFor="let answer of question.answers">
+              <h4 class="job-title2" style="color: #202342; font-size: 15px; font-weight: 500;">
+                <i class="fa-solid fa-circle-check" style="color: green;" *ngIf="answer.iscorrect==='true'"></i>
+                <i class="fa-solid fa-circle-xmark" style="color: red" *ngIf="answer.iscorrect==='false'"></i>
+                <span class="col-1"></span> {{answer.answertext}}
+              </h4>
+              <span>
+                <button class="update2" (click)="OpenUpdateAnswerDialog(answer, question.questionid)">
+                    <i class="fa-regular fa-pen-to-square"></i>
+                  </button>
+                  <button class="delete2" (click)="OpenConfirmDeleteAnswerDialog(answer.answerid)">
+                    <i class="fa-solid fa-xmark"></i>
+                  </button>
+              </span>
+            </div>
+          </div>
+          <div *ngIf="question.answers[0] === null ">
+            <div class="job-card2 row">
+              <h3 class="job-title2" style="color: #202342; font-size: 15px; font-weight: 600;">
+                No Answers Yet!
+              </h3>
+              
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+        <ng-template #deleteQuestion>
+ 
+            <h1 mat-dialog-title style="margin-left:70px">Delete Question</h1>
+            <div mat-dialog-content>
+              Would you like to delete the question?
+            </div>
+            <div mat-dialog-actions>
+              <button mat-button mat-dialog-close="no"  cdkFocusInitial>No</button>
+              <button  mat-button mat-dialog-close="yes" >Yes</button>
+            </div>
+             
+        </ng-template>
+
+ 
+        <ng-template #deleteAnswer>
+ 
+            <h1 mat-dialog-title style="margin-left:70px">Delete Answer</h1>
+            <div mat-dialog-content>
+              Would you like to delete the answer?
+            </div>
+            <div mat-dialog-actions>
+              <button mat-button mat-dialog-close="no"  cdkFocusInitial>No</button>
+              <button  mat-button mat-dialog-close="yes" >Yes</button>
+            </div>
+             
+        </ng-template>
+
+
+
+
+
+<ng-template #createQuestion>
+    <div class="form-container">
+        <form [formGroup]="CreateQuestionForm">
+            <ul class="profile-edit-list row">
+                <li class="weight-500 col-md-12">
+                     <div  class="row ">
+                        <h2 style="margin-left:150px;">Add New Question</h2>
+                     </div>
+                    <div class="row ">
+                        <div class="form-group col-md-12">
+                            <input class="form-control form-control-lg" type="text" name="questiontext" id="questiontext" matInput formControlName="questiontext"  placeholder="Question Content" [ngClass]="{'isInvalid': CreateQuestionForm.get('questiontext')?.invalid}">
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="form-group col-md-12">
+                            <input class="form-control form-control-lg" type="text" name="marks" id="marks" matInput formControlName="marks"  placeholder="Question Marks" [ngClass]="{'isInvalid': CreateQuestionForm.get('marks')?.invalid}">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <input hidden class="form-control form-control-lg" type="text" name="assessmentid" placeholder="assessmentid"id="assessmentid"matInput formControlName="assessmentid" [ngClass]="{'isInvalid': CreateQuestionForm.controls['assessmentid'].invalid}" [(ngModel)]="this.assessmentId">
+                        </div>
+                    </div>
+                    <div class="row" style="margin-left:110px;">
+                     <div class="form-group mb-0">
+                        <input  type="button" class="btn" id="createbutton" value="Save" (click)="CreateQuestion()" [disabled]="CreateQuestionForm.invalid">
+                    </div> 
+                    <div class="form-group mb-0">
+                        <input  type="button" class="btn btn-secondary" id="cancelbutton" value="Cancel" (click)="CloseCreateDialog()" >
+                    </div> 
+                    </div>
+                </li>
+            </ul>                                              
+        </form>
+   </div>
+</ng-template> 
+
+
+<ng-template #updateQuestion>
+    <div class="form-container">
+        <form [formGroup]="UpdateQuestionForm" enctype="multipart/form-data">
+            <ul class="profile-edit-list row">
+                <li class="weight-500 col-md-12">
+                     <div  class="row ">
+                        <h2 style="margin-left:150px;">Update Question</h2>
+                     </div>
+                    <div class="row ">
+                        <div class="form-group col-md-12">
+                            <input hidden class="form-control form-control-lg" type="text" name="questionid" id="questionid" matInput formControlName="questionid"  placeholder="{{this.updateAssessmentType}} Title" [ngClass]="{'isInvalid': UpdateQuestionForm.get('questionid')?.invalid}">
+                        </div>
+                    </div>
+                    <div class="row">    
+                        <div class="form-group col-md-12">
+                            <input hidden class="form-control form-control-lg" type="text"  name="assessmentid" id="assessmentid" matInput formControlName="assessmentid" placeholder="{{this.updateAssessmentType}} Description" [ngClass]="{'isInvalid': UpdateQuestionForm.controls['assessmentid'].invalid}">
+                        </div>
+                    </div>
+                    <div class="row">    
+                        <div class="form-group col-md-12">
+                            <label style="margin-left: 25px;">Qusetion Content</label>
+                            <input rows="2" class="form-control form-control-lg" type="text"  name="questiontext" id="questiontext" matInput formControlName="questiontext" placeholder="Question Content" [ngClass]="{'isInvalid': UpdateQuestionForm.controls['questiontext'].invalid}" >
+                        </div>
+                    </div>
+                    <div class="row">    
+                        <div class="form-group col-md-12">
+                            <label style="margin-left: 25px;">Qusetion Marks</label>
+                            <input  class="form-control form-control-lg" type="text"  name="marks" id="marks" matInput formControlName="marks" placeholder="Question Marks" [ngClass]="{'isInvalid': UpdateQuestionForm.controls['marks'].invalid}" >
+                        </div>
+                    </div>
+                    
+                    <div class="row" style="margin-left:110px;">
+                     <div class="form-group mb-0">
+                        <input  type="button" class="btn" id="createbutton" value="Save" (click)="UpdateQuestiont()" [disabled]="UpdateQuestionForm.invalid">
+                    </div> 
+                    <div class="form-group mb-0">
+                        <input  type="button" class="btn btn-secondary" id="cancelbutton" value="Cancel" (click)="CloseUpdateDialog()" >
+                    </div> 
+                    </div>
+                </li>
+            </ul>                                              
+        </form>
+   </div>
+</ng-template> 
+
+<ng-template #createAnswer>
+    <div class="form-container">
+        <form [formGroup]="CreateAnswerForm">
+            <ul class="profile-edit-list row">
+                <li class="weight-500 col-md-12">
+                     <div  class="row ">
+                        <h2 style="margin-left:150px;">Add New Answer</h2>
+                     </div>
+                    <div class="row ">
+                        <div class="form-group col-md-12">
+                            <input class="form-control form-control-lg" type="text" name="answertext" id="answertext" matInput formControlName="answertext"  placeholder="Answer Content" [ngClass]="{'isInvalid': CreateAnswerForm.get('answertext')?.invalid}">
+                        </div>
+                    </div>
+                    <div class="row " style="margin-left:150px; font-family: 28px;">
+                        <div class="form-group col-md-12">
+                            
+                            <input class="form-check-input" type="checkbox" name="iscorrect" id="iscorrect" formControlName="iscorrect" [ngClass]="{'isInvalid': CreateAnswerForm.get('iscorrect')?.invalid}">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Is Correct?
+                              </label>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <input hidden class="form-control form-control-lg" type="text" name="questionid" placeholder="questionid"id="questionid"matInput formControlName="questionid" [ngClass]="{'isInvalid': CreateAnswerForm.controls['questionid'].invalid}">
+                        </div>
+                    </div>
+                    <div class="row" style="margin-left:110px;">
+                     <div class="form-group mb-0">
+                        <input  type="button" class="btn" id="createbutton" value="Save" (click)="CreateAnswer()" [disabled]="CreateAnswerForm.invalid">
+                    </div> 
+                    <div class="form-group mb-0">
+                        <input  type="button" class="btn btn-secondary" id="cancelbutton" value="Cancel" (click)="CloseCreateDialog()" >
+                    </div> 
+                    </div>
+                </li>
+            </ul>                                              
+        </form>
+   </div>
+</ng-template> 
+<ng-template #updateAnswer>
+    <div class="form-container">
+        <form [formGroup]="UpdateAnswerForm">
+            <ul class="profile-edit-list row">
+                <li class="weight-500 col-md-12">
+                     <div  class="row ">
+                        <h2 style="margin-left:150px;">Update Answer</h2>
+                     </div>
+                    <div class="row ">
+                        <div class="form-group col-md-12">
+                            <input class="form-control form-control-lg" type="text" name="answertext" id="answertext" matInput formControlName="answertext"  placeholder="Answer Content" [ngClass]="{'isInvalid': UpdateAnswerForm.get('answertext')?.invalid}">
+                        </div>
+                    </div>
+                    <div class="row " style="margin-left:150px; font-family: 28px;">
+                        <div class="form-group col-md-12">
+                            <input  class="form-check-input" type="checkbox" name="iscorrect" id="iscorrect" formControlName="iscorrect" [ngClass]="{'isInvalid': UpdateAnswerForm.get('iscorrect')?.invalid}" >
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Is Correct?
+                            </label>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <input hidden class="form-control form-control-lg" type="text" name="questionid" placeholder="questionid"id="questionid"matInput formControlName="questionid" [ngClass]="{'isInvalid': UpdateAnswerForm.controls['questionid'].invalid}">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <input hidden class="form-control form-control-lg" type="text" name="answerid" placeholder="answerid"id="answerid"matInput formControlName="answerid" [ngClass]="{'isInvalid': UpdateAnswerForm.controls['answerid'].invalid}">
+                        </div>
+                    </div>
+                    <div class="row" style="margin-left:110px;">
+                     <div class="form-group mb-0">
+                        <input  type="button" class="btn" id="createbutton" value="Save" (click)="UpdateAnswer()" [disabled]="UpdateAnswerForm.invalid">
+                    </div> 
+                    <div class="form-group mb-0">
+                        <input  type="button" class="btn btn-secondary" id="cancelbutton" value="Cancel" (click)="CloseCreateDialog()" >
+                    </div> 
+                    </div>
+                </li>
+            </ul>                                              
+        </form>
+   </div>
+</ng-template> 

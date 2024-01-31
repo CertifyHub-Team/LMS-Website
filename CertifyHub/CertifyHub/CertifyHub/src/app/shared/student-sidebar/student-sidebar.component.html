@@ -1,0 +1,43 @@
+<div class="left-side-bar">
+    <div class="brand-logo">
+        <a href="index.html">
+
+            <img width="130px" height="130px" style="margin: 90px 0px 20px 45px;" src="../../../assets/Images/CertifyHub1.png" alt="" class="light-logo">
+        </a>
+        <div class="close-sidebar" data-toggle="left-sidebar-close">
+            <i class="ion-close-round"></i>
+        </div>
+    </div>
+    <div class="menu-block customscroll" style="margin-top: 80px;">
+        <div class="sidebar-menu">
+            <ul id="accordion-menu">
+                <li style="margin-bottom: 15px;">
+                    <a routerLink="/learner/StudentDashboard" class="dropdown-toggle no-arrow">
+                        <span class="micon dw dw-house-1"></span><span class="mtext">Dashboard</span>
+                    </a>
+                </li>
+                <li style="margin-bottom: 15px;">
+                    <a routerLink="/learner/StudentProfile" class="dropdown-toggle no-arrow">
+                        <span class="micon dw dw-user"></span><span class="mtext">My Profile</span>
+                    </a>
+                </li>
+                <li style="margin-bottom: 15px;">
+                    <a routerLink="/learner/MyCourses" class="dropdown-toggle no-arrow">
+                        <span class="micon dw dw-book"></span><span class="mtext">My Courses</span>
+                    </a>
+                </li>
+                <li style="margin-bottom: 15px;">
+                    <a routerLink="/learner/Certificate" class="dropdown-toggle no-arrow">
+                        <span class="micon dw dw-certificate"></span><span class="mtext">My Certificates</span>
+                    </a>
+                </li>
+                <li style="margin-bottom: 15px;">
+                    <a (click)="LogOut()" class="dropdown-toggle no-arrow">
+                        <span class="micon dw dw-logout" ></span><span class="mtext">Logout</span>
+                    </a>
+                </li>
+            </ul>
+            
+        </div>
+    </div>
+</div>

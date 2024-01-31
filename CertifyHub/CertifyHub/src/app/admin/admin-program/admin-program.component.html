@@ -1,0 +1,198 @@
+<app-admin-header></app-admin-header>
+<app-admin-sidebar></app-admin-sidebar>
+
+    <ng-template #createProgram>
+    <div class="form-container">
+        <form [formGroup]="CreateProgramForm">
+            <ul class="profile-edit-list row">
+                <li class="weight-500 col-md-12">
+                     <div  class="row ">
+                        <h2 style="margin-left:145px;">Create a New Program</h2>
+                     </div>
+                    <div class="row ">
+                        <div class="form-group col-md-12">
+                            <label>Track Name</label>
+                            <input class="form-control form-control-lg" type="text" name="trackname" matInput formControlName="trackname"  placeholder="Track Name" [ngClass]="{'isInvalid': CreateProgramForm.get('trackname')?.invalid}">
+                        </div>
+
+
+                    </div>
+                    <div class="row">    
+                        <div class="form-group col-md-12">
+                            <label>Program Description</label>
+                            <input class="form-control form-control-lg" type="text"  name="description" id="description" matInput formControlName="description" placeholder="Program Description" [ngClass]="{'isInvalid': CreateProgramForm.controls['description'].invalid}">
+                        </div>
+                    </div>
+        
+                    <div class="row">    
+                        <div class="form-group col-md-12">
+                            <label>Program Period (Months)</label>
+                            <input class="form-control form-control-lg" type="text"  name="programperiod" id="programperiod" matInput formControlName="programperiod" placeholder="Program Period" [ngClass]="{'isInvalid': CreateProgramForm.controls['programperiod'].invalid}">
+                        </div>
+                    </div>
+        
+                    <!-- <div class="row">
+                        <div class="form-group col-md-12">
+                            <label>Program Image</label>
+                            <input class="form-control form-control-lg" type="file" (input) = UploadImage($event) name="imagepath" placeholder="imagepath"id="imagepath"matInput formControlName="imagepath" [ngClass]="{'isInvalid': CreateProgramForm.controls['imagepath'].invalid}">
+                   
+                        </div>
+                    </div> -->
+                   
+
+                    <div class="row" style="margin-left:120px;">
+                     <div class="form-group mb-0">
+                        <input  type="button" class="btn" id="createbutton" value="Save" (click)="CreateProgram()" [disabled]="CreateProgramForm.invalid">
+                    </div> 
+
+
+                    <div class="form-group mb-0">
+                        <input  type="button" class="btn btn-secondary" id="cancelbutton" value="Cancel" (click)="CloseCreateDialog()" >
+                    </div> 
+                    </div>
+                </li>
+            </ul>                                              
+        </form>
+   </div>
+       
+        
+</ng-template> 
+
+<ng-template #updateProgram>
+    <div class="form-container">
+        <form [formGroup]="UpdateProgramForm">
+            <ul class="profile-edit-list row">
+                <li class="weight-500 col-md-12">
+                     <div  class="row ">
+                        <h2 style="margin-left:160px;">Update Program</h2>
+                     </div>
+                    <div class="row ">
+                        <div class="form-group col-md-12">
+                            <label>Track Name</label>
+                            <input class="form-control form-control-lg" type="text" name="trackname"  matInput formControlName="trackname"  placeholder="Track Name" [ngClass]="{'isInvalid': UpdateProgramForm.get('trackname')?.invalid}">
+                        </div>
+
+
+                    </div>
+                    <div class="row">    
+                        <div class="form-group col-md-12">
+                            <label>Program Description</label>
+                            <input class="form-control form-control-lg" type="text"  name="description" id="description" matInput formControlName="description" placeholder="Program Description" [ngClass]="{'isInvalid': UpdateProgramForm.controls['description'].invalid}">
+                        </div>
+                    </div>
+        
+                    <div class="row">    
+                        <div class="form-group col-md-12">
+                            <label>Program Period (Months)</label>
+                            <input class="form-control form-control-lg" type="text"  name="programperiod" id="programperiod" matInput formControlName="programperiod" placeholder="Program Period" [ngClass]="{'isInvalid': UpdateProgramForm.controls['programperiod'].invalid}">
+                        </div>
+                    </div>
+        
+                    <!-- <div class="row">
+                        <div class="form-group col-md-12">
+                            <label>Program Image</label>
+                            <input class="form-control form-control-lg" type="file" (input) = UploadImage($event) name="imagepath" placeholder="imagepath"id="imagepath"matInput formControlName="imagepath" [ngClass]="{'isInvalid': UpdateProgramForm.controls['imagepath'].invalid}">
+                   
+                        </div>
+                    </div> -->
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                   
+                            <input hidden class="form-control form-control-lg" type="text" name="programid" placeholder="programid"id="programid"matInput formControlName="programid" [ngClass]="{'isInvalid': UpdateProgramForm.controls['programid'].invalid}">
+                   
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-left:120px;">
+                     <div class="form-group mb-0">
+                        <input  type="button" class="btn" id="createbutton" value="Save" (click)="UpdateProgram()" [disabled]="UpdateProgramForm.invalid">
+                    </div> 
+
+
+                    <div class="form-group mb-0">
+                        <input  type="button" class="btn btn-secondary" id="cancelbutton" value="Cancel" (click)="CloseCreateDialog()" >
+                    </div> 
+                    </div>
+                </li>
+            </ul>                                              
+        </form>
+   </div>
+       
+        
+</ng-template> 
+
+
+<div class="main-container">
+    <div class="row">
+        <div class="job-card program">
+            <div class="job-title-section tit">
+            <h2 class="job-title">Programs Management Hub</h2>
+        </div>
+    </div>
+    <div class="col-2 d-flex flex-column justify-content-center">
+        <button id="sections" mat-button (click)="OpenCreateDialog()" >Create New Program</button>
+</div>
+    <div class="job-card row"  *ngFor="let program of this._adminService.programs">
+        <div class="col-2" style="margin-right: 0px; ">
+            <!-- <div class="d-flex align-items-center">
+                <img src="../../../assets/Images/{{program.imagepath}}" alt="" class="avatar-photo rounded-circle" style="width: 150px !important; height: 150px !important;">
+            </div> -->
+            <div class="profile-photo" style="margin-bottom: 20px;">
+                <a href="modal" data-toggle="modal" [attr.data-target]="'#modal' + program.programid" #updateModalRef class="edit-avatar" style="margin-right:20px ;">
+                    <i class="fa fa-pencil" style="color: #202320;"></i>
+                </a>
+                <img [src]="'../../../assets/Images/' + program.imagepath" alt="" class="avatar-photo" style="width: 140px !important; height: 150px !important;">
+            
+                <div class="modal fade" [attr.id]="'modal' + program.programid" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <form (ngSubmit)="UpdateImage(program.programid)" >
+                                <div class="modal-body pd-5">
+                                    <div class="img-container">
+                                        <input type="file" (change)="UploadImage($event, program.programid)" [formControl]="imageFormControl" required/>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <input type="submit" value="Update" class="btn btn-primary" [disabled]="imageFormControl.invalid">
+                                    <button type="button" class="btn btn-default close" data-dismiss="modal">Close</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <div class="col-7 d-flex flex-column justify-content-center">
+            <h2 class="job-title" id="trackname">{{program.trackname}}</h2>
+            <h4 id="desc">{{program.description}}</h4>
+        </div>
+        <div class="col-3 d-flex flex-column justify-content-center">
+            <button id="courses" mat-button (click)="GetCourses(program.programid)" >View Courses</button>
+        </div>
+        <button class="delete" (click)="OpenConfirmDeleteDialog(program.programid)">
+            <i class="fa-solid fa-xmark" ></i>
+        </button>
+
+        <button class="update" (click)="OpenUpdateDialog(program)">
+            <i class="fa-regular fa-pen-to-square"></i>
+        </button>
+    </div>
+      
+</div>
+
+<ng-template #deleteProgram>
+ 
+    <h1 mat-dialog-title style="margin-left:70px">Delete Program</h1>
+    <div mat-dialog-content>
+      Would you like to delete the program?
+    </div>
+    <div mat-dialog-actions>
+      <button mat-button mat-dialog-close="no"  cdkFocusInitial>No</button>
+      <button  mat-button mat-dialog-close="yes" >Yes</button>
+    </div>
+     
+</ng-template>
+
+
+

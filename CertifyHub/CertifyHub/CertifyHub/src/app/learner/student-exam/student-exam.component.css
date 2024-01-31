@@ -1,0 +1,68 @@
+.job-card {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    font-family: 'Arial', sans-serif;
+    margin: 20px 20px 20px 20px;
+   
+  }
+   
+  .job-title-section {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+   
+  .job-icon {
+    width: 40px; /* Adjust size as needed */
+    margin-right: 8px;
+  }
+   
+  .job-title {
+    font-size: 18px !important;
+    color: #333;
+    margin-right: auto;
+    font-weight: bold;
+  }
+   
+  .job-type,
+  .job-status {
+    background-color: #e0e0e0;
+    color: #555;
+    padding: 6px 12px;
+    border-radius: 12px;
+    margin-left: 15px;
+    font-size: 0.75rem;
+    font-weight: bold !important;
+  }
+  .job-salary{
+    font-size: 16px;
+    padding: 0px;
+    margin: 0px 0px 7px 0px;
+    text-align: justify;
+  }
+ 
+  button{
+    background-color: #202342;
+    color: white !important;
+    margin: 10px 0px 12px 1285px;
+    padding:5px;
+    border-radius: 13px;
+    width: 10%;
+   
+  }
+
+
+
+  .answer{
+    font-size: 15px !important;
+    margin: 5px 0px 5px 0px;
+  }
+
+  .questions{
+    padding: 10px 30px 30px 30px;
+  }

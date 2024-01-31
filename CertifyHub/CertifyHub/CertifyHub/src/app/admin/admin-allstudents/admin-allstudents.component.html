@@ -1,0 +1,81 @@
+<app-admin-header></app-admin-header>
+<app-admin-sidebar></app-admin-sidebar>
+<div class="main-container">
+    <div class="row">
+        <div class="job-card row" id="card">
+            <div class="job-title-section">
+            <h2 class="job-title">Students Management Hub</h2>
+        </div>
+    </div>
+    <div class=" row header-left" id="search">
+        <div class="menu-icon dw dw-menu"></div>
+        <button class="search-toggle-icon dw dw-search2" data-toggle="header_search"></button>
+        <div class="header-search">
+          <form>
+             
+              <div class="form-group mb-0">
+                  <i class="dw dw-search2 search-icon"></i>
+                  <input type="text" class="form-control search-input" placeholder="Search Here" (input)="Search2($event)" >
+                 
+              </div>
+             
+             
+          </form>
+      </div>
+    </div>
+    <div class="job-card row" >
+        <!-- <div class="col-2">
+            <div class="d-flex align-items-center">
+                <img [src]="getSectionImagePath(student)" [alt]="getAltText(student)" class="avatar-photo rounded-circle" style="width: 150px; height: 150px;">
+              </div>
+              
+        </div>
+        <div class="col-2 d-flex flex-column justify-content-center">
+            <h2 class="job-title" id="trackname">{{student.firstname}} {{student.lastname}}</h2>
+        </div>
+        <div class="col-3 d-flex flex-column justify-content-center" id="lecture">
+            <button id="reports" class="courses" mat-button (click)="onGetStudentReport(student.logins[0].userid)">Get a Report</button>
+        </div> -->
+        <!-- <div class="col-2 d-flex flex-column justify-content-center">
+            <button id="courses" mat-button (click)="GetStudents(section.sectionid)" >View Students</button>
+        </div>  -->
+
+
+        <table class="table">
+            <thead>
+              <tr  >
+                <th>Avatar</th>
+                <th>Name</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let student of this._adminService.filteredStudents">
+                <td>
+                  <img [src]="getSectionImagePath(student)" [alt]="getAltText(student)" class="avatar-photo rounded-circle" style="width: 100px; height: 100px;">
+                </td>
+                <td>
+                  <h2 class="job-title" id="trackname">{{student.firstname}} {{student.lastname}}</h2>
+                </td>
+                <td>
+                  <button style="width:150px" id="reports" class="courses" mat-button (click)="onGetStudentReport(student.logins[0].userid)">Get a Report</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+    </div> 
+
+    <!-- <mat-form-field>
+      <mat-label>Choose a time range</mat-label>
+      <input matInput [matTimepicker]="timePickerStart" placeholder="Start time">
+      <mat-datepicker-toggle matSuffix [for]="timePickerStart"></mat-datepicker-toggle>
+      <mat-timepicker #timePickerStart></mat-timepicker>
+
+      <input matInput [matTimepicker]="timePickerEnd" placeholder="End time">
+      <mat-datepicker-toggle matSuffix [for]="timePickerEnd"></mat-datepicker-toggle>
+      <mat-timepicker #timePickerEnd></mat-timepicker>
+    </mat-form-field> -->
+    
+      
+</div>

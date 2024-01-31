@@ -1,0 +1,112 @@
+<app-admin-header></app-admin-header>
+<app-admin-sidebar></app-admin-sidebar>
+
+<div class="main-container">
+    <div class="pd-ltr-20 xs-pd-20-10">
+        <div class="min-height-200px">
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <div class="title">
+                            <h4>Profile</h4>
+                        </div>
+                        <nav aria-label="breadcrumb" role="navigation">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Profile</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row" style="padding-top: 30px !important; height: 400px !important;">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-30">
+                    <div class="pd-20 card-box height-100-p" style="padding-top: 60px;" >
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="profile-photo" style="margin-bottom: 20px; ">
+                                    <a  href="modal" data-toggle="modal" data-target="#modal"  #modalRef class="edit-avatar"><i class="fa fa-pencil"></i></a>
+                                    <img [src]="this._adminService.userInfo.imagepath ? '../../../assets/Images/' + this._adminService.userInfo.imagepath : getSectionImagePath(this._adminService.userInfo)" 
+                                        [alt]="getAltText(this._adminService.userInfo)" 
+                                        alt="" 
+                                        class="avatar-photo" 
+                                        style="width: 200px !important; height: 170px !important;">
+
+                                    <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-body pd-5">
+                                                    <div class="img-container">
+                                                        <!-- <img id="image" src="src/assets/vendors/images/photo2.jpg" alt="Picture"> -->
+                                                        <input type="file" (change) = UploadImage($event) [formControl]="this.imageFormControl" required/>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <input type="submit" value="Update" class="btn btn-primary" (click)="UpdateImage(this._adminService.imageName)" [disabled]="this.imageFormControl.invalid">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <h2 class="text-center h2 mb-0 " >{{this._adminService.userInfo.firstname}} {{this._adminService.userInfo.lastname}}</h2>
+                                
+                            </div>
+                            
+    
+                            <div class="profile-infos col-4" style="margin-top: 10px;padding-left:30px; ">
+                                <h2 class="mb-20  text-blue h2">Contact Information</h2>
+                                <ul>
+                                    <li >
+                                        <span>Email Address:</span>
+                                        {{this._adminService.userInfo.username}}
+                                    </li>
+                                    <li>
+                                        <span>Phone Number:</span>
+                                        {{this._adminService.userInfo.phonenumber}} 
+                                        
+                                        <!-- (click)="OpenUpdateDialog(_learnerService.userInfo.phonenumber)" <i class="fa fa-pencil" ></i> -->
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="profile-infos col-4" style="margin-top: 10px;padding-left:30px; padding-top: 60px;">
+                                <ul>
+                                    <li>
+                                        <span>City:</span>
+                                        {{this._adminService.userInfo.address}}
+                                    </li>
+                                    <li>
+                                        <button (click)="OpenUpdateDialog()"><span>Update Password 
+                                         <i class="fa fa-pencil" style="color: #404040;" ></i> </span></button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+       
+    </div>
+</div>
+<ng-template #UpdateDialog>
+    <form style="display: flex; flex-direction: column; align-items: center; padding-top: 10px;">
+     
+            <div class="example-container">
+    <mat-form-field>
+    <mat-label>New Password</mat-label>
+    <input [formControl]="passwordFormControl" required style="width: 180px; border-radius: 4px; height: 40px; padding: 8px; border: 1px solid #ccc;" placeholder="New Password">
+    </mat-form-field>
+    </div>
+     
+            <div style="width: fit-content; margin-top: 10px;">
+    <input type="button" class="btn btn-primary ms-10" [disabled]="passwordFormControl.invalid"
+                    mat-dialog-close (click)="UpdatePassword()" mat-raised-button value="Update">
+    </div>
+     
+        </form>
+    </ng-template>

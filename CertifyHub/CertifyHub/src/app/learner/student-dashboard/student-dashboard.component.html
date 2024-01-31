@@ -1,0 +1,83 @@
+<app-student-header></app-student-header>
+<app-student-sidebar></app-student-sidebar>
+<div class="main-container">
+    <div >
+ 
+        <div class="row">
+        <div class="col-lg-8">
+        <!-- welcom part -->
+        <div class="card-box pd-20  mb-30 welcome" >
+            <div class="row align-items-center ">
+
+                <div class="col-md-12">
+                  <p class="max-width-600 " >
+                      Hello <strong>{{_learnerService.user.firstname}} {{_learnerService.user.lastname}}</strong>, welcome back to your learning journey! 🚀 Let's make today exceptional! 📚✨
+                  </p>
+              </div>
+              
+            </div>
+        </div>
+<!-- Section part -->
+<div class="course-section ">
+    <div *ngFor="let s of _learnerService.sections" class="course-card">
+      <div *ngIf="s.imagePath; else noImage" class="course-image">
+        <img src="{{s.imagePath}}" alt="{{s.sectionName}}">
+      </div>
+      <ng-template #noImage>
+        <div class="default-image">{{ getDisplayText(s.sectionName) }}</div>
+      </ng-template>
+      <div class="course-content">
+        <h2 class="course-title">{{s.courseName}}</h2>
+        
+        <div class="course-info">
+          <span class="course-time">{{s.lectureDays}}</span>
+          <span class="course-time">{{s.timeLecture}}</span>
+        </div>
+        <div class="course-info">
+          <a href="{{s.meetingLink}}" class="course-link">Join Lecture</a>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+ 
+       
+        </div>
+ 
+ 
+        <div class="col-lg-4" style="margin-top: 25px;">
+                        <!-- calender part -->
+                            <div class="card-box mb-60">
+                            <mat-calendar [dateClass]="dateClass"></mat-calendar>
+                            </div>
+                            <div class="mb-30">
+                            </div>
+                                        <!-- timeLine part -->
+                                        <div class="timeline-container" *ngIf="_learnerService.AssessmentsForThisWeek.length > 0">
+                                            <h2>Timeline</h2>
+                                            <div *ngFor="let assessment of _learnerService.AssessmentsForThisWeek" class="timeline-item">
+                                              <div class="timeline-icon">
+                                                <i [ngClass]="getIconClass(assessment.assessmenttype)" aria-hidden="true"></i>
+                                              </div>
+                                              <div class="timeline-content">
+                                                <div class="timeline-date">
+                                                  {{ assessment.startdate | date: 'fullDate' }} -
+                                                  {{ assessment.enddate | date: 'fullDate' }}
+                                                </div>
+                                                <div class="timeline-title">{{ assessment.title }}</div>
+                                                <div class="timeline-type">{{ assessment.assessmenttype }}</div>
+                                                <div class="timeline-time">
+                                                  {{ assessment.starttime | date: 'shortTime' }} -
+                                                  {{ assessment.endtime | date: 'shortTime' }}
+                                                </div>
+                                                <div class="timeline-description">{{ assessment.description }}</div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                         
+               
+ 
+        </div>
+        </div>
+    </div>
+</div>

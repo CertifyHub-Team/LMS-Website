@@ -1,0 +1,461 @@
+<!-- <ng-template #UpdateDialog>
+    <form style="display: flex; flex-direction: column; align-items: center;">
+
+        <div class="example-container">
+            <mat-form-field>
+                <mat-label>new phone number</mat-label>
+                <input matInput  [formControl]="phoneFormControl" required maxlength="10">
+                <mat-error *ngIf="phoneFormControl.hasError('required')">Phone number is
+                    required</mat-error>
+                <mat-error *ngIf="phoneFormControl.hasError('minlength')">Please enter a valid phone number.</mat-error>
+            </mat-form-field>
+        </div>
+
+        <div style="width: fit-content; margin-top: 0;">
+            <input type="button" class="btn btn-primary ms-10" [disabled]="phoneFormControl.invalid" 
+                mat-dialog-close (click)="UpdatePhoneNumber()" mat-raised-button value="Update Phone Number">
+        </div>
+        
+    </form>
+</ng-template> -->
+
+<!-- <ng-template #fullInterests>
+    <div style="padding: 20px;"><h3>{{this._learnerService.userCv.interests}}</h3></div>
+    <button type="button" class="btn btn-default" (click)="CloseAboutMeDialog()">Close</button>
+</ng-template> -->
+
+<ng-template #UpdateDialog>
+    <form style="display: flex; flex-direction: column; align-items: center; padding-top: 10px;">
+     
+            <div class="example-container">
+    <mat-form-field>
+    <mat-label>New Password</mat-label>
+    <input [formControl]="passwordFormControl" required style="width: 180px; border-radius: 4px; height: 40px; padding: 8px; border: 1px solid #ccc;" placeholder="New Password">
+    </mat-form-field>
+    </div>
+     
+            <div style="width: fit-content; margin-top: 10px;">
+    <input type="button" class="btn btn-primary ms-10" [disabled]="passwordFormControl.invalid"
+                    mat-dialog-close (click)="UpdatePassword()" mat-raised-button value="Update">
+    </div>
+     
+        </form>
+</ng-template>
+
+<app-student-header></app-student-header>
+<app-student-sidebar></app-student-sidebar>
+
+<div class="main-container">
+    <div class="pd-ltr-20 xs-pd-20-10">
+        <div class="min-height-200px">
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <div class="title">
+                            <h4>Profile</h4>
+                        </div>
+                        <nav aria-label="breadcrumb" role="navigation">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Profile</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 mb-30">
+                    <div class="pd-20 card-box height-100-p">
+                        <div class="profile-photo" style="margin-bottom: 20px; ">
+                            <a *ngIf="!_learnerService.unDocumented && _learnerService.userCv != null" href="modal" data-toggle="modal" data-target="#modal"  #modalRef class="edit-avatar"><i class="fa fa-pencil"></i></a>
+                            <img [src]="this._learnerService.userInfo.imagepath ? '../../../assets/Images/' + this._learnerService.userInfo.imagepath : getSectionImagePath(this._learnerService.userInfo)" 
+                            [alt]="getAltText(this._learnerService.userInfo)" 
+                            alt="" 
+                            class="avatar-photo" 
+                            style="width: 200px !important; height: 170px !important;">
+                            <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-body pd-5">
+                                            <div class="img-container">
+                                                <!-- <img id="image" src="src/assets/vendors/images/photo2.jpg" alt="Picture"> -->
+                                                <input type="file" (change) = UploadImage($event) [formControl]="this.imageFormControl" required/>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <input type="submit" value="Update" class="btn btn-primary" (click)="UpdateImage(this._learnerService.imageName)" [disabled]="this.imageFormControl.invalid">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h2 class="text-center h2 mb-0 " >{{_learnerService.userInfo.firstname}} {{_learnerService.userInfo.lastname}}</h2>
+                        
+
+                        <div class="profile-info" style="margin-top: 20px; ">
+                            <h3 class="mb-20  text-blue h3">Contact Information</h3>
+                            <ul>
+                                <li >
+                                    <span>Email Address:</span>
+                                    {{_learnerService.userInfo.username}}
+                                </li>
+                                <li>
+                                    <span>Phone Number:</span>
+                                    {{_learnerService.userInfo.phonenumber}} 
+                                    <a *ngIf="!_learnerService.unDocumented && _learnerService.userCv != null"   ></a>
+                                    <!-- (click)="OpenUpdateDialog(_learnerService.userInfo.phonenumber)" <i class="fa fa-pencil" ></i> -->
+                                </li>
+                                <li>
+                                    <span>City:</span>
+                                    {{_learnerService.userInfo.address}}
+                                </li>
+                                <li style="margin-top: 20px; ">
+                                    <button (click)="OpenUpdatePasswordDialog()"><span>Update Password 
+                                     <i class="fa fa-pencil" style="color: #404040;" ></i> </span></button>
+                                </li>
+
+                            </ul>
+                        </div>
+                        <div class="profile-info" style="margin-top: 20px; ">
+                            <ul>
+                                <li><button active style="background-color: white; border: none" (click)="Cv()">
+                                    <span>View My Cv</span>
+                                </button></li>
+                            </ul>
+ 
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 mb-30">
+                    <div class="card-box height-100-p overflow-hidden">
+                        <div class="profile-tab height-100-p">
+                            <div class="tab height-100-p">
+                                <ul class="nav nav-tabs customtab" role="tablist">
+                                    <li class="nav-item" *ngIf="!_learnerService.unDocumented && _learnerService.userCv != null">
+                                      <a class="nav-link" data-toggle="tab" href="#myCvTab" role="tab" [ngClass]="{'active': isMyCvTabActive()}">My Information</a>
+                                    </li>
+                                    <li class="nav-item" *ngIf="_learnerService.unDocumented && _learnerService.userCv === null">
+                                      <a class="nav-link active" data-toggle="tab" href="#createTab" role="tab" [ngClass]="{'active': isCreateTabActive()}">Create Cv</a>
+                                    </li>
+                                    <li class="nav-item" *ngIf="!_learnerService.unDocumented && _learnerService.userCv != null">
+                                      <a class="nav-link" data-toggle="tab" href="#editTab" role="tab" >Edit My Information</a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div class="tab-pane fade show" id="myCvTab" role="tabpanel" #myCvTab [ngClass]="{'active': isMyCvTabActive()}">
+                                        <div class="pd-20">
+                                            <div class="profile-setting">
+                                                    <ul class="profile-edit-list row">
+                                                        <li class="weight-500 col-md-12">
+                                                            <div class="row">
+                                                                <div class="form-group col-md-6">
+                                                                    <h2>Name</h2>
+                                                                    <h3> {{_learnerService.userInfo.firstname}} {{_learnerService.userInfo.lastname}}</h3>
+                                                                </div>
+                                                                <div class="form-group col-md-6">
+                                                                    <h2>Contact Info</h2>
+                                                                    <div class="row">
+                                                                            <h3 class="mr-4 pl-10 ml-1"><i class="fa-solid fa-envelope"></i> :{{_learnerService.userInfo.username}} </h3>
+                                                                    
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <h3 class="mr-4 pl-10 ml-1"><i class="fa-solid fa-phone"></i> :{{_learnerService.userInfo.phonenumber}} </h3>
+                                                                </div>
+                                                                </div>
+                                                            </div> 
+                                                            <div class="row">
+                                                                <div class="form-group col-md-6">
+                                                                    <h2>Education</h2>
+                                                                    <h3>{{this._learnerService.userCv.education}}</h3>
+                                                                </div>
+                                                                <div class="form-group col-md-6">
+                                                                    <h2>GPA</h2>
+                                                                    <h3>{{_learnerService.userCv.gpa}}</h3>
+                                                                </div>
+                                                            </div>
+                                                
+                                                            <div class="row">
+                                                                <div class="form-group col-md-6">
+                                                                
+                                                                    <h2>Experience</h2>
+                                                                    <h3>{{_learnerService.userCv.experience}}</h3>
+                                                               
+                                                                </div>
+                                                                <div class="form-group col-md-6">
+                                                                
+                                                                    <h2>Major</h2>
+                                                                    <h3>{{_learnerService.userCv.major}}</h3>
+                                                               
+                                                                </div>
+                                                            </div>
+                                                
+                                                            <div class="row">
+                                                                <div class="form-group col-md-6">
+                                                               
+                                                                    <h2>Projects</h2>
+                                                                    <h3>{{_learnerService.userCv.projects}}</h3>
+                                                               
+                                                                </div>
+                                                                <div class="form-group col-md-6">
+                                                                
+                                                                    <h2>Languages</h2>
+                                                                    <h3>{{_learnerService.userCv.languages}}</h3>
+                                                              
+                                                                </div>
+                                                            </div>
+                                                
+                                                            <div class="row">
+                                                                
+                                                                <div class="form-group col-md-6">
+                                                                
+                                                                    <h2>Skills</h2>
+                                                                    <h3>{{_learnerService.userCv.skills}}</h3>
+                                                                
+                                                                </div>
+                                                                <!-- <div class="form-group col-md-6">
+                                                                    <h2>About Me</h2>
+                                                                    <h3 >{{_learnerService.userCv.interests}}</h3>
+                                                                </div> -->
+                                                                <div class="form-group col-md-6">
+                                                                    <h2>About Me</h2>
+                                                                    <ng-container *ngIf="_learnerService.userCv.interests.length > 50; else shortInterests">
+                                                                        <h3>{{ _learnerService.userCv.interests | slice:0:50 }}...
+                                                                            <a active style="color: blue;" (click)="OpenAboutMeDialog(_learnerService.userCv.interests)">Read More</a>
+                                                                        </h3>
+                                                                    </ng-container>
+                                                                    <ng-template #shortInterests>
+                                                                        <h3>{{ _learnerService.userCv.interests }}</h3>
+                                                                    </ng-template>
+                                                                    <ng-template #fullInterests>
+                                                                        <div style="padding: 20px;">
+                                                                            <h3>{{ _learnerService.userCv.interests }}</h3>
+                                                                        </div>
+                                                                        <button type="button" class="btn btn-default" (click)="CloseAboutMeDialog()">Close</button>
+                                                                    </ng-template>
+                                                                </div>
+                                                                
+                                                            </div>
+                                                            
+                                                
+                                                            <div class="row">
+                                                                
+                                                                <div class="form-group col-md-6">
+                                                                   
+                                                                    <h2><i class="fa-solid fa-link"></i><a href="{{_learnerService.userCv.gitHubLink}}">GitHub URL</a> </h2>
+                                                              
+                                                                </div>
+                                                                <div class="form-group col-md-6">
+                                                                   
+                                                                    <h2><i class="fa-solid fa-link"></i><a href="{{_learnerService.userCv.linkedintlink}}">LinkedIn URL</a> </h2>
+                                                              
+                                                                </div>
+                                                            </div>
+                                                
+                                                        </li>
+                                                    </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Setting Tab start -->
+                                    <div class="tab-pane fade show active" id="createTab" role="tabpane2" #createTab [ngClass]="{'active': isCreateTabActive()}">
+                                        <div class="pd-20">
+                                            <div class="profile-setting">
+                                            <!-- <ng-template> -->
+                                                <form [formGroup]="CreateCvForm">
+                                                    <ul class="profile-edit-list row">
+                                                        <li class="weight-500 col-md-12">
+                                                
+                                                            <div class="row">
+                                                                <div class="form-group col-md-6">
+                                                                    <h2>Education</h2>
+                                                                    <input class="form-control form-control-lg" type="text" id="education" matInput formControlName="education" [ngClass]="{'isInvalid': CreateCvForm.get('education')?.invalid}">
+                                                                </div>
+                                                                <div class="form-group col-md-6">
+                                                                    <h2>GPA</h2>
+                                                                    <input class="form-control form-control-lg" type="text" matInput formControlName="gpa" [ngClass]="{'isInvalid': CreateCvForm.controls['gpa'].invalid}">
+                                                                </div>
+                                                            </div>
+                                                
+                                                            <div class="row">
+                                                                <div class="form-group col-md-6">
+                                                                
+                                                                    <h2>Experience</h2>
+                                                                    <input class="form-control form-control-lg" type="text" matInput formControlName="experience"[ngClass]="{'isInvalid': CreateCvForm.controls['experience'].invalid}">
+                                                            
+                                                                </div>
+                                                                <div class="form-group col-md-6">
+                                                                
+                                                                    <h2>Major</h2>
+                                                                    <input class="form-control form-control-lg" type="text" matInput formControlName="major" [ngClass]="{'isInvalid': CreateCvForm.controls['major'].invalid}">
+                                                            
+                                                                </div>
+                                                            </div>
+                                                
+                                                            <div class="row">
+                                                                <div class="form-group col-md-6">
+                                                            
+                                                                    <h2>Projects</h2>
+                                                                    <input class="form-control form-control-lg" type="text" matInput formControlName="projects" [ngClass]="{'isInvalid': CreateCvForm.controls['projects'].invalid}">
+                                                            
+                                                                </div>
+                                                                <div class="form-group col-md-6">
+                                                                
+                                                                    <h2>Languages</h2>
+                                                                    <input matInput class="form-control form-control-lg" type="text"  formControlName="languages" [ngClass]="{'isInvalid': CreateCvForm.controls['languages'].invalid}">
+                                                            
+                                                                </div>
+                                                                
+                                                            </div>
+                                                
+                                                            <div class="row">
+                                                                <div class="form-group col-md-6">
+                                                                
+                                                                    <h2>Skills</h2>
+                                                                    <textarea class="form-control form-control-lg" type="text" matInput formControlName="skills" [ngClass]="{'isInvalid': CreateCvForm.controls['skills'].invalid}" ></textarea>
+                                                                
+                                                                </div>
+                                                                
+                                                                <div class="form-group col-md-6">
+                                                                    <h2>About Me</h2>
+                                                                    <textarea class="form-control form-control-lg" type="text" matInput formControlName="interests" [ngClass]="{'isInvalid': CreateCvForm.controls['interests'].invalid}"></textarea>
+                                                                
+                                                                </div>
+                                                            </div>
+                                                
+                                                            <div class="row">
+                                                                
+                                                                <div class="form-group col-md-6">
+                                                                    <h2>GitHub URL</h2>
+                                                                    <input class="form-control form-control-lg" type="text" matInput formControlName="githublink" [ngClass]="{'isInvalid': CreateCvForm.controls['githublink'].invalid}">
+                                                                </div>
+                                                                <div class="form-group col-md-6">
+                                                                    <h2>Linkedin URL:</h2>
+                                                                    <input class="form-control form-control-lg" type="text" matInput formControlName="linkedintlink" [ngClass]="{'isInvalid': CreateCvForm.controls['linkedintlink'].invalid}">
+                                                                    
+
+                                                                </div>
+                                                            </div>
+                                                
+                                                            <div class="row">
+                                                                <input hidden class="form-control form-control-lg date-picker" type="text" formControlName="userid" [value]="this.userId">
+                                                            </div>
+                                                            <div class="row">
+                                                                <input hidden class="form-control form-control-lg date-picker" type="text" formControlName="certificates">
+                                                            </div>
+                                                            <div class="row">
+                                                                <input hidden class="form-control form-control-lg date-picker" type="text" formControlName="rating">
+                                                        </div>
+                                                
+                                                            <div class="form-group mb-0">
+                                                                <input  type="button" class="btn btn-primary" value="Save" (click)="CreateCv()" [disabled]="CreateCvForm.invalid">
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </form>
+                                            <!-- </ng-template> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Setting Tab End -->
+                                    <div class="tab-pane fade show " id="editTab" role="tabpane3" #editTab >
+                                        <div class="pd-20">
+                                            <div class="profile-setting">
+                                            <form [formGroup]="UpdateCvForm">
+                                                <ul class="profile-edit-list row">
+                                                <li class="weight-500 col-md-12">
+                                                    <div class="row">
+                                                        <div class="form-group col-md-6">
+                                                            <label>Education</label>
+                                                            <input matInput class="form-control form-control-lg" type="text" formControlName="education" [(ngModel)]="_learnerService.userCv.education"
+                                                            [ngClass]="{'isInvalid': UpdateCvForm.controls['education'].invalid}">
+                                                        </div>
+                                                        <div class="form-group col-md-6">
+                                                            <label>GPA</label>
+                                                            <input matInput class="form-control form-control-lg" type="text" formControlName="gpa" [(ngModel)]="_learnerService.userCv.gpa"
+                                                            [ngClass]="{'isInvalid': UpdateCvForm.controls['gpa'].invalid}">
+                                                        </div>
+                                                    </div>
+                                        
+                                                    <div class="row">
+                                                        <div class="form-group col-md-6">
+                                                            <label>Experience</label>
+                                                            <input matInput class="form-control form-control-lg" type="text" formControlName="experience" [(ngModel)]="_learnerService.userCv.experience"
+                                                            [ngClass]="{'isInvalid': UpdateCvForm.controls['experience'].invalid}">
+                                                        </div>
+                                                        <div class="form-group col-md-6">
+                                                            <label>Major</label>
+                                                            <input matInput class="form-control form-control-lg" type="text" formControlName="major" [(ngModel)]="_learnerService.userCv.major"
+                                                            [ngClass]="{'isInvalid': UpdateCvForm.controls['major'].invalid}">
+                                                        </div>
+                                                    </div>
+                                        
+                                                    <div class="row">
+                                                        <div class="form-group col-md-6">
+                                                            <label>Projects</label>
+                                                            <input matInput class="form-control form-control-lg" type="text" formControlName="projects" [(ngModel)]="_learnerService.userCv.projects"
+                                                            [ngClass]="{'isInvalid': UpdateCvForm.controls['projects'].invalid}">
+                                                        </div>
+                                                        <div class="form-group col-md-6">
+                                                            <label>Languages</label>
+                                                            <input matInput class="form-control form-control-lg" type="text" formControlName="languages" [(ngModel)]="_learnerService.userCv.languages"
+                                                            [ngClass]="{'isInvalid': UpdateCvForm.controls['languages'].invalid}">
+                                                        </div>
+                                                    </div>
+                                        
+                                                    <div class="row">
+                                                        <div class="form-group col-md-6">
+                                                            <label>Skills</label>
+                                                            <textarea class="form-control form-control-lg" type="text" matInput formControlName="skills" [(ngModel)]="_learnerService.userCv.skills" [ngClass]="{'isInvalid': UpdateCvForm.controls['skills'].invalid}"></textarea>
+                                                        </div>
+                                                    <div class="form-group col-md-6">
+                                                        <label>About Me</label>
+                                                        <textarea class="form-control form-control-lg" type="text" matInput formControlName="interests" [(ngModel)]="_learnerService.userCv.interests" [ngClass]="{'isInvalid': UpdateCvForm.controls['interests'].invalid}"></textarea>
+                                                    </div>
+                                                    </div>
+                                        
+                                                    <div class="row">
+                                                    <div class="form-group col-md-6">
+                                                        <label>GitHub URL</label>
+                                                        <input class="form-control form-control-lg" type="text" matInput formControlName="gitHubLink" [(ngModel)]="_learnerService.userCv.gitHubLink"[ngClass]="{'isInvalid': UpdateCvForm.controls['gitHubLink'].invalid}">
+                                                    </div>
+                                                    <div class="form-group col-md-6">
+                                                        <label>Linkedin URL:</label>
+                                                        <input class="form-control form-control-lg" type="text" matInput formControlName="linkedintlink" [(ngModel)]="_learnerService.userCv.linkedintlink" [ngClass]="{'isInvalid': UpdateCvForm.controls['linkedintlink'].invalid}">
+                                                    </div>
+                                                    </div>
+                                        
+                                                    <div class="row">
+                                                    <input hidden class="form-control form-control-lg date-picker" type="text" formControlName="userid" >
+                                                    </div>
+                                        
+                                                    <div class="form-group mb-0">
+                                                    <input type="button" class="btn btn-primary" value="Update" (click)="UpdateCvInfo()" [disabled]="UpdateCvForm.invalid">
+                                                    </div>
+                                                </li>
+                                                </ul>
+                                            </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                      
+                                    <!-- Setting -->
+
+                                    
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-wrap pd-20 mb-20 card-box">
+            DeskApp - Bootstrap 4 Admin Template By <a href="https://github.com/dropways" target="_blank">Ankit Hingarajiya</a>
+        </div>
+    </div>
+</div>
+

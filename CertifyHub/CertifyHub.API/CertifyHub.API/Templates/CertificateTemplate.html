@@ -1,0 +1,201 @@
+﻿<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <meta charset="utf-8" />
+
+    <title></title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Great+Vibes&family=Whisper&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital@1&family=Dancing+Script&family=Great+Vibes&family=Pacifico&family=Slabo+27px&family=Whisper&display=swap" rel="stylesheet">
+
+    <style>
+
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        body, html {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #F4EAE0;
+            color: #053251;
+        }
+
+        .container {
+            width: 210mm; /* A4 width */
+            height: 297mm; /* A4 height */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-image: url('your-certificate-border-image.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            position: relative; /* For absolute positioning of QR code */
+            box-sizing: border-box;
+            padding: 40mm; /* Adjust padding as needed */
+        }
+
+
+        h1 {
+            font-size: 36px;
+            margin-top: 40px;
+        }
+
+        h2 {
+            font-size: 24px;
+            margin-top: 20px;
+        }
+
+        h3 {
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        h4 {
+            font-size: 32px;
+            margin-top: 40px;
+            font-weight: bold;
+        }
+
+        p {
+            font-size: 22px;
+            margin-top: 10px;
+        }
+
+        .name {
+            font-size: 28px;
+            font-style: italic;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        .date {
+            float: left;
+            position: relative;
+            top: 45px !important;
+            right: 180px !important;
+        }
+
+        .signature {
+            float: right;
+            font-family: 'Great Vibes', cursive;
+            font-size: 30px;
+            position: relative;
+            left: 160px !important;
+            bottom: 15px !important;
+        }
+
+        .logo {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto;
+            background-size: cover;
+        }
+
+        .scan {
+            margin-bottom: 5px; /* Space above the QR code text */
+
+            font-size:14px;
+        }
+
+        .qr-container {
+            position: absolute;
+            bottom: 20mm; /* Adjust based on your layout */
+            right: 20mm; /* Adjust based on your layout */
+            text-align: right;
+        }
+
+        .qr-code {
+            height: 140px;
+            width: 140px;
+            margin-top: 10px; /* Space between text and QR code */
+        }
+
+        .certificate {
+            width: calc(100% - 10%); /* Adjust width based on padding */
+            min-height: 100%; /* Make sure it covers at least the whole page */
+            background-image: url('https://res.cloudinary.com/dsmowyioy/image/upload/v1704752992/IMG_1796_tgacxp.jpg');
+            background-size: contain; /* Change to 'cover' if you want the image to be the full size of the container */
+            background-repeat: no-repeat;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative; /* For absolute positioning of QR code */
+        }
+
+        @media print {
+            .container {
+                width: 100%;
+                height: 100%;
+                page-break-after: always;
+                padding: 40mm; /* Adjust if needed */
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container certificate">
+
+        <h1>Certificate of Achievment</h1>
+
+        <h2>CertifyHub LMS</h2>
+
+        <h3 style="font-size: 24px;">{{CourseName}}</h3>
+
+        <h4>Certificate of Completion</h4>
+
+        <p>Our company is pleased to be able to award this certificate to</p>
+
+        <p class="name">{{FIRSTNAME}} {{LASTNAME}}</p>
+
+        <p>Upon the successful completion of your <span style="font-size: 22px !important;">{{CourseName}}</span>, module, level or grade!</p>
+
+        <!--<p>with a grade of<span style="font-weight:bold; font-size: 25px; margin-left: 10px;">{{TOTAL_GRADE_SUM}}</span></p>-->
+
+        <p class="date" style="font-size: 24px;">{{DATE}}</p>
+
+        <p class="signature">CertifyHub</p>
+
+        <div class="logo"></div>
+
+        <!-- Add a new div around the paragraph and the QR code -->
+        <div class="qr-container">
+            <p class="scan">
+                Scan the CV's QR code for more details:
+            </p>
+            <img class="qr-code" src="{{QRCODEURL}}" alt="QR Code">
+        </div>
+
+
+    </div>
+
+
+</body>
+
+</html>

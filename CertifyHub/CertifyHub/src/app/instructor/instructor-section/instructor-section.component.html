@@ -1,0 +1,591 @@
+<app-instructor-header></app-instructor-header>
+<app-instructor-sidebar></app-instructor-sidebar>
+ 
+<div class="main-container" >
+    <div class="row">
+        <div class="job-card">
+            <div class="job-title-section">
+            <h2 class="job-title">{{this._instructorService.sectionInf.sectionname}}</h2>
+            <span class="job-type">Time Lecture: {{this._instructorService.sectionInf.timelecture}}</span>
+            <span class="job-type">Lecture Days: {{this._instructorService.sectionInf.lecturedays}}</span>
+            <button mat-button style="margin-right: 25px;" > <a href="{{this._instructorService.sectionInf.meetinglink}}"> Join Lecture Meeting </a> </button>
+            <a class="dropdown-toggle no-arrow" href="#" role="button" data-toggle="dropdown" (click)="OpenCreateDialog()">
+                <i style="color: black; font-size: 22px;" class="icon-copy dw dw-notification"></i>
+                <span class="badge notification-active"></span>
+            </a>
+            <!-- <div class="dropdown-menu dropdown-menu-right">
+                <div class="notification-lists customscroll">
+                    <ul>
+                        <li *ngFor="let notification of this._learnerService.sectionNotifications" >
+                            <a href="#" [ngStyle]="{ 'background-color': isEndDatePassed(notification.notificationenddate) ? '#EEEEEE' : '' }">
+                                <h3 style="font-weight: bold;" >
+                                    {{ notification.notificationtext }}
+                                  </h3>
+
+                                <p style="color: gray; font-size:12px; padding-top: 0px; position: relative; bottom: 10px;">{{notification.notificationstartdate | date: 'MMM d, y'}}</p>
+                                <hr>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div> -->
+    
+        </div>
+            <div class="job-details-section">        
+            </div>
+        </div>
+ 
+    </div>
+ 
+    <button mat-button id="report" (click)="onGetSectionReport()" id="tab">Get Section Report</button>
+ 
+    <div class="row" id="tabs" >
+        <mat-tab-group  >
+            <mat-tab label="Material"  >
+                <button type="button" id="assessment" class="btn btn-secondary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" (click)="OpenAddMaterialDialog()">
+                    Add Material <i class="fa-solid fa-plus"></i>
+                  </button>
+                <div *ngFor="let material of this._instructorService.courseMaterial" style="margin-bottom:20px; overflow-x: hidden;">
+ 
+                        <div style="margin-top:30px; margin-left:20px">
+                            <div class="row" style="margin-bottom: 20px; display: block;">
+                                <span id="materialName" class="row" style="margin-bottom: 20px;"> <strong >  {{material.materialname}}  </strong></span>
+ 
+                                <span><button class="update" (click)="OpenUpdateMaterialDialog(material)">
+                                    <i class="fa-regular fa-pen-to-square"></i>
+                                </button>
+                                <button class="delete" (click)="OpenConfirmDeleteMaterialDialog(material.materialid , material.courseid)" >
+                                    <i class="fa-solid fa-xmark" ></i>
+                                </button></span>
+ 
+                                    <div style="margin-left:20px">
+                                        <a  a [href]="'assets/uploads/' + material.materialpath" target="_blank">
+                                            <i class="fa fa-file-pdf-o" id="pdfIcon" style="margin-bottom: 10px;"></i>
+                                            <span style="color: black; font-size: 16px;  margin-left: 10px; font-weight: 700;">Attached File</span>
+                                        </a>
+                                   
+                                   
+               
+               
+                                   
+               
+                                        <div class="row" style="margin-bottom: 20px; margin-top: 10px; margin-left: 4px; display: block;">
+               
+                                            <div class="video-container" *ngIf="material.videourl!=null ">
+                                                <a href="{{ material.videourl }}" target="_blank" class="play-button">
+                                               
+                                                </a>
+                                            </div>
+                                       
+                                        </div>
+                                    </div>
+                            </div>
+                            <hr>
+                        </div>
+                    <div>
+ 
+                     
+                    </div>
+                </div>
+               
+ 
+ 
+ 
+            </mat-tab>
+            <mat-tab label="Attendance">
+ 
+                <div class="mat-mdc-tab-body-content">
+                    <div class="row" style="margin-top: 30px; margin-bottom: 30px">
+                      <div class="col-11 justify-content-center mx-auto">
+                 
+                        <button mat-button id="attendance" *ngIf="!showAttendanceTable && !showUpdateAttendanceTable" (click)="toggleTables()">Take Attendance</button>
+                        <button mat-button id="updateAttendance" *ngIf="!showAttendanceTable && !showUpdateAttendanceTable" (click)="toggleUpdateTables()">Update Attendance</button>
+                 
+                        <table class="table table-bordered"  *ngIf="!showAttendanceTable && !showUpdateAttendanceTable">
+                          <thead>
+                            <tr>
+                             
+                              <th class="col-5">Student Name</th>
+                              <th class="col-5">Email</th>
+                              <th class="col-2"> Details </th>
+                            </tr>
+                          </thead>
+                       
+                         
+                          <tbody *ngFor="let student of _instructorService.studentInfo">
+                            <tr>
+                              <td>
+                                <div class="student-info">
+                                  <img [src]="student.imagepath ? '../../../assets/Images/' + student.imagepath : getStudentImagePath(student)" 
+                                  [alt]="getAltText(student)"  class="avatar-photo">
+                                  <span class="student-name">{{ student.firstname }} {{ student.lastname }}</span>
+                                </div>
+                              </td>
+                              <td class="student-name">{{ student.username }}</td>
+                              <td>
+                                <button id="detailicon" (click)="OpenDetailDialog(student.userid)">
+                                  <i class="fa-solid fa-info"></i>
+                                </button>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                 
+                        <table class="table table-bordered" *ngIf="showAttendanceTable">
+                          <thead>
+                            <tr>
+                              <th class="col-5">Student Name</th>
+                              <th class="col-5">Email</th>
+                              <th class="col-2">Is Absent</th>
+                            </tr>
+                          </thead>
+                          <tbody *ngFor="let student of _instructorService.studentInfo">
+                            <tr>
+                              <td>
+                                <div class="student-info">
+                                    <img [src]="student.imagepath ? '../../../assets/Images/' + student.imagepath : getStudentImagePath(student)" 
+                                    [alt]="getAltText(student)"  class="avatar-photo">
+                                  <span class="student-name">{{ student.firstname }} {{ student.lastname }}</span>
+                                </div>
+                              </td>
+                              <td class="student-name">{{ student.username }}</td>
+                              <td class="checkbox-column">
+                                <input type="checkbox" [(ngModel)]="student.attendanceStatus" />
+                              </td>
+                             
+                            </tr>
+                          </tbody>
+                        </table>
+                 
+     
+                  <table class="table table-bordered" *ngIf="showUpdateAttendanceTable">
+                    <thead>
+                      <tr>
+                        <th class="col-5">Student Name</th>
+                        <th class="col-5">Email</th>
+                        <th class="col-2">Is Absent</th>
+                      </tr>
+                    </thead>
+                    <tbody *ngFor="let student of _instructorService.studentInfo">
+                      <tr>
+                        <td>
+                          <div class="student-info">
+                            <img [src]="student.imagepath ? '../../../assets/Images/' + student.imagepath : getStudentImagePath(student)" 
+                                  [alt]="getAltText(student)"  class="avatar-photo">
+                            <span class="student-name">{{ student.firstname }} {{ student.lastname }}</span>
+                          </div>
+                        </td>
+                        <td class="student-name">{{ student.username }}</td>
+                        <td class="checkbox-column">
+                          <input type="checkbox" [(ngModel)]="student.attendanceStatus" />
+                        </td>
+                       
+                      </tr>
+                    </tbody>
+                  </table>
+                       
+                        <button mat-button  id="attendance" *ngIf="showAttendanceTable" (click)="submitAttendance()">Submit Attendance</button>
+                        <button mat-button  id="attendance"*ngIf="showUpdateAttendanceTable" (click)="UpdateAttendance()">Update Attendance</button>
+     
+                      </div>
+                    </div>
+     
+     
+                  </div>
+
+            </mat-tab>
+ 
+            <mat-tab label="Assesment">
+ 
+
+                <div class="container mt-4">
+                    <div class="btn-group">
+                      <button type="button" id="assessment" class="btn btn-secondary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        New Assessment <i class="fa-solid fa-plus"></i>
+                      </button>
+                      <div class="dropdown-menu">
+                        <a class="dropdown-item assessmentchoice" (click)="OpenCreateAssignmentDialog('Exam')"  >New Exam</a>
+                        <a class="dropdown-item assessmentchoice" (click)="OpenCreateAssignmentDialog('Assignment')" >New Assignment</a>
+                      </div>
+                    </div>
+                </div>
+
+               
+                 <div class="card-containers"  *ngIf="this._instructorService.sectionAssessments.length === 0">
+                   
+                        <h2>No Assessments Yet!</h2>
+                    
+                </div>
+                
+
+                 <div class="card-container" *ngIf="this._instructorService.sectionAssessments.length > 0">
+                    <div class="card" *ngFor="let section of this._instructorService.sectionAssessments">
+                    <h2 style="margin-bottom: -25px;"> {{ section.title}}</h2>
+                    
+                    <span><button class="update" (click)="OpenUpdateDialog(section)">
+                        <i class="fa-regular fa-pen-to-square"></i>
+                    </button>
+                    <button class="delete" (click)="OpenConfirmDeleteDialog(section.assessmentid)">
+                        <i class="fa-solid fa-xmark" ></i>
+                    </button></span>
+                    <p>{{section.description}}</p>
+                    <div *ngIf="section.attachfile != null">
+                        <a href="/assets/uploads/{{ section.attachfile }}" download target="_blank">
+                            <i class="fa fa-file-pdf-o" id="pdfIcon" style="margin-bottom: 10px;"></i>
+                          </a>
+                          
+                        Assignment Pdf
+                      </div>
+                      
+                    <footer>
+                        <span class="row">
+                            
+
+                    <span > <strong>Starts At: </strong> {{section.startdate | date: 'MMM d, y' }} , {{section.starttime| date: 'shortTime'  }}</span>
+                    <span><strong>Ends At: </strong> {{section.enddate | date: 'MMM d, y' }}, {{section.endtime | date: 'shortTime'  }}</span>
+                   
+                    <span>    
+                       
+                     
+
+                        <span>{{ section.studentgrade }}</span>
+                        <strong>Out of {{ section.assessmentscore }} Marks </strong>    
+                    </span>
+                </span>
+                     <div  id="buttonsstyle">
+ 
+                        <button (click)="GoToStudentsSolutions(section.assessmentid)" id="uploadButton" *ngIf="section.assessmenttype === 'Assignment'">Students Submissions <i class="fa-solid fa-chevron-right"></i></button>
+                    </div>
+                    <div  id="buttonsstyle">
+ 
+                        <button (click)="ExamDetails(section.assessmentid)" id="uploadButton" *ngIf="section.assessmenttype === 'Exam'">View Exam Deatils<i class="fa-solid fa-chevron-right"></i></button>
+                    </div>
+                    <div >
+ 
+                        <button (click)="StudentsGrades(section.assessmentid)" id="grades" *ngIf="section.assessmenttype === 'Exam'">Students Grades<i class="fa-solid fa-chevron-right"></i></button>
+                    </div>
+                   
+ 
+                   
+                    </footer>
+                    </div>
+                    </div> 
+
+ 
+            </mat-tab>
+           
+          </mat-tab-group>
+    </div>
+</div>
+ 
+ 
+ 
+
+
+<ng-template #createNotification>
+    <div class="form-container">
+        <form [formGroup]="CreateNotificationForm">
+            <ul class="profile-edit-list row">
+                <li class="weight-500 col-md-12">
+                     <div  class="row ">
+                        <h2 style="margin-left:120px;">Add New Notification</h2>
+                     </div>
+                    <div class="row ">
+                        <div class="form-group col-md-12">
+                            <input class="form-control form-control-lg" type="text" name="notificationtext" id="notificationtext" matInput formControlName="notificationtext"  placeholder="Notification Content" [ngClass]="{'isInvalid': CreateNotificationForm.get('notificationtext')?.invalid}">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <input hidden class="form-control form-control-lg" type="text" name="sectionid" placeholder="sectionid"id="sectionid"matInput formControlName="sectionid" [ngClass]="{'isInvalid': CreateNotificationForm.controls['sectionid'].invalid}" [(ngModel)]="this.sectionId">
+                        </div>
+                    </div>
+                    <div class="row" style="margin-left:90px;">
+                     <div class="form-group mb-0">
+                        <input  type="button" class="btn" id="createbutton" value="Save" (click)="CreateNotification()" [disabled]="CreateNotificationForm.invalid">
+                    </div> 
+                    <div class="form-group mb-0">
+                        <input  type="button" class="btn btn-secondary" id="cancelbutton" value="Cancel" (click)="CloseCreateDialog()" >
+                    </div> 
+                    </div>
+                </li>
+            </ul>                                              
+        </form>
+   </div>
+</ng-template> 
+
+<!-- 
+new  -->
+
+
+<ng-template #createAssignment>
+    <div class="form-container">
+        <form [formGroup]="CreateAssignmentForm" enctype="multipart/form-data">
+            <ul class="profile-edit-list row">
+                <li class="weight-500 col-md-12">
+                     <div  class="row ">
+                        <h2 style="margin-left:100px;">Create a New {{this.assessmentType}}</h2>
+                     </div>
+                    <div class="row ">
+                        <div class="form-group col-md-12">
+                            <label>{{this.assessmentType}} Title</label>
+                            <input class="form-control form-control-lg" type="text" name="title" id="title" matInput formControlName="title"  placeholder="{{this.assessmentType}} Title" [ngClass]="{'isInvalid': CreateAssignmentForm.get('title')?.invalid}">
+                        </div>
+                    </div>
+                    <div class="row">    
+                        <div class="form-group col-md-12">
+                            <label>{{this.assessmentType}} Description</label>
+                            <input class="form-control form-control-lg" type="text"  name="description" id="description" matInput formControlName="description" placeholder="{{this.assessmentType}} Description" [ngClass]="{'isInvalid': CreateAssignmentForm.controls['description'].invalid}">
+                        </div>
+                    </div>
+                    <div class="row">    
+                        <div class="form-group col-md-12">
+                            <input hidden class="form-control form-control-lg" type="text"  name="assessmenttype" id="assessmenttype" matInput formControlName="assessmenttype" placeholder="assessmenttype" [ngClass]="{'isInvalid': CreateAssignmentForm.controls['assessmenttype'].invalid}" >
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                   <label>Start Date and time</label>
+                            <input class="form-control form-control-lg" type="datetime-local" name="startdate" placeholder="startdate" id="startdate" matInput formControlName="startdate" [ngClass]="{'isInvalid': CreateAssignmentForm.controls['startdate'].invalid}">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>End Date and time</label>
+                            <input class="form-control form-control-lg" type="datetime-local" name="enddate" id="enddate" matInput formControlName="enddate"  placeholder="enddate" [ngClass]="{'isInvalid': CreateAssignmentForm.get('enddate')?.invalid}">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label>{{this.assessmentType}} Score</label>
+                            <input class="form-control form-control-lg" type="text" name="assessmentscore" placeholder="{{this.assessmentType}} score" id="assessmentscore" matInput formControlName="assessmentscore" [ngClass]="{'isInvalid': CreateAssignmentForm.controls['assessmentscore'].invalid}">
+                   
+                        </div>
+                        <div class="form-group col-md-6" *ngIf="this.assessmentType === 'Assignment'"> 
+                            <label>Assignment File</label>
+                            <input class="form-control form-control-lg" type="file" (change)="UploadFile($event)" name="attachfile" id="attachfile" matInput formControlName="attachfile" >
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                   
+                            <input hidden class="form-control form-control-lg" type="text" name="sectionid" placeholder="sectionid" id="sectionid"matInput formControlName="sectionid" [ngClass]="{'isInvalid': CreateAssignmentForm.controls['sectionid'].invalid }" [(ngModel)]="this.sectionId" >
+                        </div>
+                    </div>
+                    <div class="row" style="margin-left:90px;">
+                     <div class="form-group mb-0">
+                        <input  type="button" class="btn" id="createbutton" value="Save" (click)="CreateAssignment()" [disabled]="CreateAssignmentForm.invalid">
+                    </div> 
+                    <div class="form-group mb-0">
+                        <input  type="button" class="btn btn-secondary" id="cancelbutton" value="Cancel" (click)="CloseCreateDialog()" >
+                    </div> 
+                    </div>
+                </li>
+            </ul>                                              
+        </form>
+   </div>
+</ng-template> 
+
+
+<ng-template #updateAssignment>
+    <div class="form-container">
+        <form [formGroup]="UpdateAssignmentForm" enctype="multipart/form-data">
+            <ul class="profile-edit-list row">
+                <li class="weight-500 col-md-12">
+                     <div  class="row ">
+                        <h2 style="margin-left:120px;">Update {{this.updateAssessmentType}}</h2>
+                     </div>
+                    <div class="row ">
+                        <div class="form-group col-md-12">
+                            <label>{{this.updateAssessmentType}} Title</label>
+                            <input class="form-control form-control-lg" type="text" name="title" id="title" matInput formControlName="title"  placeholder="{{this.updateAssessmentType}} Title" [ngClass]="{'isInvalid': UpdateAssignmentForm.get('title')?.invalid}">
+                        </div>
+                    </div>
+                    <div class="row">    
+                        <div class="form-group col-md-12">
+                            <label>{{this.updateAssessmentType}} Description</label>
+                            <input class="form-control form-control-lg" type="text"  name="description" id="description" matInput formControlName="description" placeholder="{{this.updateAssessmentType}} Description" [ngClass]="{'isInvalid': UpdateAssignmentForm.controls['description'].invalid}">
+                        </div>
+                    </div>
+                    <div class="row">    
+                        <div class="form-group col-md-12">
+                            <input hidden class="form-control form-control-lg" type="text"  name="assessmenttype" id="assessmenttype" matInput formControlName="assessmenttype" placeholder="assessmenttype" [ngClass]="{'isInvalid': UpdateAssignmentForm.controls['assessmenttype'].invalid}" >
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                   <label>Start Date and time</label>
+                            <input class="form-control form-control-lg" type="datetime-local" name="startdate" placeholder="startdate" id="startdate" matInput formControlName="startdate" [ngClass]="{'isInvalid': UpdateAssignmentForm.controls['startdate'].invalid}">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>End Date and time</label>
+                            <input class="form-control form-control-lg" type="datetime-local" name="enddate" id="enddate" matInput formControlName="enddate"  placeholder="enddate" [ngClass]="{'isInvalid': UpdateAssignmentForm.get('enddate')?.invalid}">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label>{{this.updateAssessmentType}} Score</label>
+                            <input class="form-control form-control-lg" type="text" name="assessmentscore" placeholder="{{this.updateAssessmentType}} score" id="assessmentscore" matInput formControlName="assessmentscore" [ngClass]="{'isInvalid': UpdateAssignmentForm.controls['assessmentscore'].invalid}">
+                   
+                        </div>
+                        <div class="form-group col-md-6"  *ngIf="this.updateAssessmentType === 'Assignment'">
+                            <label>{{this.updateAssessmentType}} File</label>
+                            <input class="form-control form-control-lg" type="file" (change)="UploadFile($event)" name="attachfile" id="attachfile" matInput formControlName="attachfile"  >
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                   
+                            <input hidden class="form-control form-control-lg" type="text" name="sectionid" placeholder="sectionid" id="sectionid"matInput formControlName="sectionid" [ngClass]="{'isInvalid': UpdateAssignmentForm.controls['sectionid'].invalid}" [(ngModel)]="this.sectionId" >
+                        </div>
+                    </div>
+                    <div class="row" style="margin-left:90px;">
+                     <div class="form-group mb-0">
+                        <input  type="button" class="btn" id="createbutton" value="Save" (click)="UpdateAssignment()" [disabled]="UpdateAssignmentForm.invalid">
+                    </div> 
+                    <div class="form-group mb-0">
+                        <input  type="button" class="btn btn-secondary" id="cancelbutton" value="Cancel" (click)="CloseUpdateDialog()" >
+                    </div> 
+                    </div>
+                </li>
+            </ul>                                              
+        </form>
+   </div>
+</ng-template> 
+
+<ng-template #deleteAssignment>
+ 
+    <h1 mat-dialog-title style="margin-left:70px">Delete Assessment</h1>
+    <div mat-dialog-content>
+      Would you like to delete the assessment?
+    </div>
+    <div mat-dialog-actions>
+      <button mat-button mat-dialog-close="no"  cdkFocusInitial>No</button>
+      <button  mat-button mat-dialog-close="yes" >Yes</button>
+    </div>
+     
+</ng-template>
+<ng-template #AddMaterial>
+    <div class="form-container">
+    <form [formGroup]="AddMaterialForm" enctype="multipart/form-data">
+    <ul class="profile-edit-list row">
+    <li class="weight-500 col-md-12">
+    <div  class="row ">
+    <h2 style="margin-left:100px;">Add a New Material</h2>
+    </div>
+    <div class="row ">
+    <div class="form-group col-md-12">
+    <label>Material Name</label>
+    <input class="form-control form-control-lg" type="text" name="materialname" id="materialname" matInput formControlName="materialname"  placeholder="Material Name" [ngClass]="{'isInvalid': AddMaterialForm.get('materialname')?.invalid}">
+    </div>
+    </div>
+    <div class="row">    
+    <div class="form-group col-md-6">
+    <label>Material File</label>
+    <input class="form-control form-control-lg" type="file" (change)="UploadMaterialFile($event)" name="materialpath" id="materialpath" matInput formControlName="materialpath"  [ngClass]="{'isInvalid': AddMaterialForm.get('materialpath')?.invalid}">
+    </div>
+    </div>
+    <div class="row">    
+    <div class="form-group col-md-12">
+    <input hidden class="form-control form-control-lg" type="text" name="courseid" id="courseid" matInput formControlName="courseid" placeholder="courseid" [ngClass]="{'isInvalid': AddMaterialForm.controls['courseid'].invalid}">
+    </div>
+    </div>
+    <div class="row">
+    <div class="form-group col-md-12">
+    <input class="form-control form-control-lg" type="text"  name="videourl" id="videourl" matInput formControlName="videourl" placeholder="videourl" [ngClass]="{'isInvalid': AddMaterialForm.controls['videourl'].invalid}">
+    </div>
+    </div>
+    <div class="row" style="margin-left:90px;">
+    <div class="form-group mb-0">
+    <input  type="button" class="btn" id="createbutton" value="Save" (click)="AddFormMaterial()" [disabled]="AddMaterialForm.invalid">
+    </div> 
+    <div class="form-group mb-0">
+    <input  type="button" class="btn btn-secondary" id="cancelbutton" value="Cancel" (click)="CloseCreateDialog()" >
+    </div> 
+    </div>
+    </li>
+    </ul>
+    </form>
+    </div>
+    </ng-template>
+     
+    <ng-template #updateMaterial>
+    <div class="form-container">
+    <form [formGroup]="updateMaterialForm" enctype="multipart/form-data">
+    <ul class="profile-edit-list row">
+    <li class="weight-500 col-md-12">
+    <div  class="row ">
+    <h2 style="margin-left:100px;">Update Material</h2>
+    </div>
+    <div class="row ">
+     
+                            <div class="form-group col-md-12">
+    <label>Material Name</label>
+    <input class="form-control form-control-lg" type="text" name="materialname" id="materialname" matInput formControlName="materialname"  placeholder="Material Name" [ngClass]="{'isInvalid': updateMaterialForm.get('materialname')?.invalid}">
+    </div>
+    </div>
+    <div class="row">    
+    <div class="form-group col-md-6">
+    <label>Material File</label>
+    <input class="form-control form-control-lg" type="file" (change)="editMaterialFile($event)" name="materialpath" id="materialpath" matInput formControlName="materialpath"  [ngClass]="{'isInvalid': updateMaterialForm.get('materialpath')?.invalid}">
+    </div>
+    </div>
+    <div class="row">    
+    <div class="form-group col-md-12">
+    <input hidden class="form-control form-control-lg" type="text" name="courseid" id="courseid" matInput formControlName="courseid" placeholder="courseid" [ngClass]="{'isInvalid': updateMaterialForm.controls['courseid'].invalid}">
+    </div>
+    <div class="form-group col-md-6">
+    <label>Selected File: {{ updateMaterialForm.get('materialpath')?.value}}</label>
+    </div>
+    </div>
+    <div class="row">
+    <div class="form-group col-md-12">
+    <input class="form-control form-control-lg" type="text"  name="videourl" id="videourl" matInput formControlName="videourl" placeholder="videourl" [ngClass]="{'isInvalid': updateMaterialForm.controls['videourl'].invalid}">
+    </div>
+    </div>
+     
+     
+                        <div class="row" style="margin-left:90px;">
+    <div class="form-group mb-0">
+    <input  type="button" class="btn" id="createbutton" value="Save" (click)="UpdateMaterial()" >
+    </div> 
+    <div class="form-group mb-0">
+    <input  type="button" class="btn btn-secondary" id="cancelbutton" value="Cancel" (click)="CloseUpdateMaterialDialog()" >
+    </div> 
+    </div>
+     
+                    </li>
+    </ul>
+    </form>
+    </div>
+    </ng-template>
+     
+     
+    <ng-template #deleteMaterial>
+    <h1 mat-dialog-title style="margin-left:70px">Delete Material</h1>
+    <div mat-dialog-content>
+          Would you like to delete this Material?
+    </div>
+    <div mat-dialog-actions>
+    <button mat-button mat-dialog-close="no"  cdkFocusInitial>No</button>
+    <button  mat-button mat-dialog-close="yes" >Yes</button>
+    </div>
+    </ng-template>
+    <ng-template #details>
+        <div style="padding: 20px;">
+          <h2 class="AttendanceDetails">Attendance Details</h2>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let attendance of _instructorService.attendanceOfLearner">
+                <td>{{ attendance.dateofattendance | date: 'MMM d, y' }}</td>
+                <td [ngClass]="{'present': attendance.status === 'Present', 'absent': attendance.status === 'Absent'}">{{ attendance.status }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <button type="button" class="btn btn-default" id="closedetails" (click)="CloseDetailDialog()">Close</button>
+      </ng-template>

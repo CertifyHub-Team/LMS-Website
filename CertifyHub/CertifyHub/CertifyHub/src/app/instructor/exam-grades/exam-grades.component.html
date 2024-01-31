@@ -1,0 +1,38 @@
+<app-instructor-header></app-instructor-header>
+<app-instructor-sidebar></app-instructor-sidebar>
+<div class="main-container">
+    <div class="row">
+        <div class="job-card">
+            <div class="job-title-section">
+            <h2 class="job-title">{{this._instructorService.studentsSolution[0].title}} - Students Grades</h2>
+        </div>
+    </div>
+    <div class="job-card row" >
+        <table class="table">
+            <thead>
+              <tr  >
+                <th>Student Name</th>
+                <th>Student Grade</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let section of this._instructorService.studentsGrades">
+                <td>
+                  <h4 class="job-title" id="trackname">{{section.firstname}} {{section.lastname}}</h4>
+                </td>
+                <td *ngIf="section.studentgrade ===null">
+                    There is No submission 
+                </td>
+                <td *ngIf="section.studentgrade !==null">
+                    {{section.studentgrade}} 
+                 </td>
+                
+                
+              </tr>
+
+            </tbody>
+          </table>
+          <hr>
+          
+    </div> 
+</div>

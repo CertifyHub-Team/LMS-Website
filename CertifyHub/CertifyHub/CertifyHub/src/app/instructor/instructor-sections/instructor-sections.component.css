@@ -1,0 +1,102 @@
+
+*{
+    overflow-x: hidden !important;
+}
+.course-card {
+    max-width: 300px; /* Adjust width as necessary */
+    margin: 40px 4px 40px 76px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 5px; /* Rounded corners */
+  }
+   
+  .course-card img.mat-card-image {
+    border-top-left-radius: 5px; /* Rounded corners for image */
+    border-top-right-radius: 5px;
+  }
+   
+  mat-card-content h2 {
+    font-size: 1.25rem; /* Large font size for title */
+    margin-bottom: 15px;
+  }
+   
+  mat-progress-bar {
+    margin-bottom: 15px;
+  }
+   
+
+  .author-info {
+    align-items: center;
+    align-content: center !important;
+    text-align: center !important;
+  }
+  
+  .author-info .completion-rate {
+    font-weight: 400;
+  }
+  
+  span.name {
+    font-size: 17px;
+    font-weight: bold;
+  }
+  
+
+  .job-card {
+    display: flex;
+    flex-direction: column;
+    width: 1058px; 
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    font-family: 'Arial', sans-serif;
+    margin: 20px 20px 20px 60px;
+   
+  }
+   
+  .job-title-section {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+   
+  .job-icon {
+    width: 40px; /* Adjust size as needed */
+    margin-right: 8px;
+  }
+   
+  .job-title {
+    font-size: 24px !important;
+    color: #333;
+    margin-right: auto;
+    font-weight: bold;
+  }
+   
+  .job-type,
+  .job-status {
+    background-color: #e0e0e0;
+    color: #555;
+    padding: 6px 12px;
+    border-radius: 12px;
+    margin-left: 4px;
+    font-size: 0.75rem;
+    font-weight: bold !important;
+  }
+  .job-salary{
+    font-size: 16px;
+    padding: 0px;
+    margin: 0px 0px 7px 0px;
+    text-align: justify;
+  }
+
+  button{
+    background-color: #202342;
+    color: white !important;
+    /* margin: 20px 0px 5px 60px; */
+    padding: 7px;
+    border-radius: 10px;
+    width: 100%;
+  }
+  .names{
+    margin-bottom: 15px;
+  }

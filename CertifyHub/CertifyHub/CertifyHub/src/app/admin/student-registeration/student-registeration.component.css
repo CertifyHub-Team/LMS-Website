@@ -1,0 +1,118 @@
+.job-card {
+    width: 1058px; 
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    font-family: 'Arial', sans-serif;
+    margin: 20px 20px 30px 60px;
+  }
+  .job-title-section {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+  
+  .job-icon {
+    width: 40px; /* Adjust size as needed */
+    margin-right: 8px;
+  }
+  
+  .job-title {
+    font-size: 24px !important;
+    color: #333;
+    margin-right: auto;
+    font-weight: bold;
+  }
+  
+  .job-type,
+  .job-status {
+    background-color: #e0e0e0;
+    color: #555;
+    padding: 6px 12px ;
+    border-radius: 12px;
+    margin-left: 15px;
+    font-size: 0.75rem;
+    text-align: center;
+    font-weight: bold !important;
+  }
+  
+  .job-salary {
+    font-size: 16px;
+    padding: 0px;
+    margin: 0px 0px 7px 0px;
+    text-align: justify;
+  }
+  
+  
+  button{
+    background-color: #202342;
+    color: white !important;
+    margin: 10px 0px 12px 60px; 
+    padding:5px;
+    border-radius: 13px;
+    width: 22%;
+    
+  }
+  .courses{
+    background-color: #202342;
+    color: white !important;
+    margin: 10px 0px 12px 150px; 
+    padding:10px !important;
+    border-radius: 13px;
+    width: 100%;
+  }
+  #desc{
+    text-align: justify;
+  }
+  
+  
+  a {
+    text-decoration: none;
+    color:white !important;
+  
+  }
+  .example-container mat-form-field + mat-form-field {
+    margin-left: 8px;
+  }
+  formss{
+        text-align: center;
+        margin-top: 70px;
+
+  }
+
+  .isInvalid{
+border: 2px solid none;
+  }
+
+ 
+ .job-card .form-group {
+    width: 100% !important;
+}
+
+.job-card .form-control {
+    width: 100% !important;
+}
+
+.custom-dropdown {
+  width: 100%;
+ 
+
+}
+
+.custom-dropdown .dropdown-menu {
+  width: 94%;
+  margin-right: 90px;
+  margin-bottom: 30px;
+}
+
+.custom-dropdown .dropdown-item {
+  padding: 10px;
+ 
+  cursor: pointer;
+}
+
+.custom-dropdown .dropdown-item:hover {
+  background-color: #f0f0f0; 
+}
+

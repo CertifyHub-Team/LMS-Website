@@ -1,0 +1,31 @@
+<app-admin-header></app-admin-header>
+<app-admin-sidebar></app-admin-sidebar>
+<div class="main-container">
+    <div class="pd-ltr-20">
+        
+        <div class="row"></div>
+        <div class="row"></div>
+        <div class="card-box mb-30">
+            <h2 class="h4 pd-20">Course Details</h2>
+            <table class="data-table table nowrap">
+                <thead>
+                    <tr>
+                        <th>Course Name</th>
+                        <th>Track Name</th>
+                        <th>Number Of Sections</th>
+                        <th>Prerequisite</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let course of _adminService.courses ">
+                        <td>{{course.coursename}}</td>
+                        <td>{{course.program.trackname}}</td>
+                        <td>{{course.numberofsections}}</td>
+                        <td>{{course.prerequisite}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <button mat-stroked-button color="primary" id="courses"  type="submit" value="Create" style="margin-left: 10px;"  routerLink="/admin/Course" >Back</button>
+    </div>
+</div>

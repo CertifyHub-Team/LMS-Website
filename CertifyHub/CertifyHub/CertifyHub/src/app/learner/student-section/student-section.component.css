@@ -1,0 +1,498 @@
+.job-card {
+  display: flex;
+  flex-direction: column;
+  width: 1058px;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  font-family: 'Arial', sans-serif;
+  margin: 20px 20px 20px 60px;
+ 
+}
+ 
+.job-title-section {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+ 
+.job-icon {
+  width: 40px; /* Adjust size as needed */
+  margin-right: 8px;
+}
+ 
+.job-title {
+  font-size: 24px !important;
+  color: #333;
+  margin-right: auto;
+  font-weight: bold;
+}
+ 
+.job-type,
+.job-status {
+  background-color: #e0e0e0;
+  color: #555;
+  padding: 6px 12px;
+  border-radius: 12px;
+  margin-left: 15px;
+  font-size: 0.75rem;
+  font-weight: bold !important;
+}
+.job-salary{
+  font-size: 16px;
+  padding: 0px;
+  margin: 0px 0px 7px 0px;
+  text-align: justify;
+}
+
+button{
+  background-color: #202342;
+  color: white !important;
+  margin: 10px 0px 12px 60px;
+  padding:5px;
+  border-radius: 13px;
+  width: 22%;
+ 
+}
+
+
+
+#report{
+
+  background-color: #202342;
+  color: white !important;
+  margin: 10px 0px 12px 60px;
+  padding:5px;
+  border-radius: 13px;
+  width: 15%;
+   
+}
+
+
+a {
+  text-decoration: none;
+  color:white !important;
+
+}
+
+#tabs{
+
+display: flex;
+flex-direction: column;
+width: 1058px;
+padding: 16px;
+border-radius: 8px;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+background-color: white;
+font-family: 'Arial', sans-serif;
+margin: 20px 20px 20px 47px;
+}
+
+.mat-mdc-tab-group, .mat-mdc-tab-nav-bar {
+   --mdc-tab-indicator-active-indicator-color: #202342!important;
+   --mat-tab-header-disabled-ripple-color: rgba(0, 0, 0, 0.38);
+   --mat-tab-header-pagination-icon-color: #000;
+   --mat-tab-header-inactive-label-text-color: rgba(0, 0, 0, 0.6);
+   --mat-tab-header-active-label-text-color: #3f51b5;
+   --mat-tab-header-active-ripple-color: #202342;
+   --mat-tab-header-inactive-ripple-color: #3f51b5;
+   --mat-tab-header-inactive-focus-label-text-color: rgba(0, 0, 0, 0.6);
+   --mat-tab-header-inactive-hover-label-text-color: rgba(0, 0, 0, 0.6);
+   --mat-tab-header-active-focus-label-text-color: #202342;
+   --mat-tab-header-active-hover-label-text-color: #202342;
+   --mat-tab-header-active-focus-indicator-color: #202342;
+   --mat-tab-header-active-hover-indicator-color: #202342;
+}
+
+
+
+#pdfIcon{
+font-size:28px;
+color:red;
+}
+
+
+#materialName{
+
+margin-left:10px;
+font-size:18px;
+color:#202342
+}
+
+.video-container {     width: 320px;     height: 180px;     background-color: #000;     position: relative;     border-radius: 10px;     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);     overflow: hidden; }
+
+
+.play-button {
+
+  width: 0;
+
+  height: 0;
+
+  border-top: 20px solid transparent;
+
+  border-bottom: 20px solid transparent;
+
+  border-left: 40px solid #fff;
+
+  position: absolute;
+
+  left: 50%;
+
+  top: 50%;
+
+  transform: translate(-50%, -50%);
+
+  cursor: pointer;
+
+}
+
+
+
+
+
+
+
+.dataTables_paginate .paginate_button {
+background-color: black !important;
+color: white;
+border: 1px solid #f7e5d1 !important;
+border-radius: 5px;
+margin: 2px;
+padding: 6px 12px;
+}
+
+/* Style the PDF button */
+.buttons-pdf {
+background-color: black !important;
+color: white;
+border: 1px solid #f7e5d1 !important;
+border-radius: 5px;
+padding: 6px 12px;
+}
+
+/* Style the other format buttons */
+.buttons-copy, .buttons-excel, .buttons-csv {
+background-color: black !important;
+color: white;
+border: 1px solid #f7e5d1 !important;
+border-radius: 5px;
+padding: 6px 12px;
+}
+
+
+.card-container {
+display: flex;
+flex-wrap: wrap;
+gap: 20px;
+padding: 20px;
+}
+
+.card {
+background: #fff;
+border: 1px solid #ddd;
+border-radius: 8px;
+padding: 20px;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+width: 100%; /* or any other width */
+}
+
+.card h2 {
+color: #333;
+margin-bottom: 15px;
+}
+
+.card p {
+color: #666;
+font-size: 14px;
+}
+
+.card footer span {
+display: flex;
+align-items: center;
+/* justify-content: space-between; */
+margin: 0px 30px 10px 54px;
+}
+
+.card footer span span  {
+color: #333;
+font-size: 12px;
+
+}
+
+.card footer div button {
+background: #202342!important;
+color: white;
+border: none;
+padding: 10px 20px;
+cursor: pointer;
+border-radius: 15px;
+width:15%;
+margin-left: 12px !important;
+}
+
+
+
+
+.card footer button:hover {
+background: #202342!important;
+}
+
+
+#buttonsstyle {
+margin-left: auto;
+display: flex;
+justify-content: flex-end;
+}
+#uploadButton{
+width:18%;
+}
+
+
+.markdialog {
+background-color: white !important;
+padding-top: 30px;
+text-align: center;
+align-items: center;
+}
+.attempdialog {
+  background-color: white !important;
+
+  text-align: center;
+  padding: 30px 15px 0px 15px;
+  }
+
+
+#close {
+margin-bottom: 34px !important;
+width: 40%;
+margin-top: 12px;
+font-size: 18px;
+margin-right: 22%; /* Adjust as needed to center the button */
+}
+#closeUpload {
+  margin-bottom: 34px !important;
+  width: 40%;
+  margin-top: 30px;
+  font-size: 18px;
+  margin-right: 22%; /* Adjust as needed to center the button */
+  }
+#attemp {
+  margin-bottom: 34px !important;
+  width: 40%;
+  margin-top: 12px;
+  font-size: 14px;
+  margin-right: 22%; /* Adjust as needed to center the button */
+  }
+  
+
+
+thead{
+color:white;
+background-color: #202342 !important;
+}
+
+
+.modal-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1050;
+}
+ 
+.upload-form {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 6px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 450px;
+  font-family: 'Helvetica', 'Arial', sans-serif;
+}
+ 
+.file-input-container {
+  position: relative;
+  border: 2px dashed #ccc;
+  border-radius: 6px;
+  text-align: center;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+ 
+.file-input-container:hover {
+  border-color: #007bff;
+}
+ 
+.file-input-container input[type="file"] {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+ 
+.file-input-placeholder {
+  color: #999;
+  font-size: 1rem;
+}
+ 
+/* Styling the 'UPLOAD' label/button */
+.upload-button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-top: 10px;
+}
+ 
+/* Cancel and Submit Button Styles */
+.form-button {
+  padding: 10px 25px;
+  margin-top: 10px;
+  border: 2px solid #007bff;
+  background: none;
+  color: #007bff;
+  border-radius: 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+ 
+.form-button:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+ 
+.form-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+ 
+.form-title {
+  font-size: 1.5rem;
+  color: #333;
+}
+ 
+.form-description {
+  font-size: 1rem;
+  color: #666;
+}
+ 
+.form-button {
+  padding: 10px 20px;
+  margin: 10px 5px;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+  flex-grow: 1;
+  flex-basis: calc(50% - 10px);
+}
+ 
+.form-buttons {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+ 
+.cancel-button {
+  background-color: #dc3545;
+  color: white;
+}
+ 
+.cancel-button:hover {
+  background-color: #c82333;
+}
+ 
+.submit-button {
+  background-color: #007bff;
+  color: white;
+}
+ 
+.submit-button:hover {
+  background-color: #0069d9;
+}
+ 
+.close-icon {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: #000;
+}
+ 
+.file-input-container {
+  cursor: pointer;
+}
+ 
+.file-input-container:hover {
+  border-color: #007bff;
+}
+ 
+.upload-button {
+ 
+  display: inline-block;
+  margin-top: 0;
+}
+ 
+@media (max-width: 576px) {
+  .form-button {
+    flex-basis: 100%;
+    margin-bottom: 10px;
+  }
+}
+.notification-lists ul li a{
+	display: block;
+	position: relative;
+  right: 150px;
+  left: 0;
+	padding: 10px 10px 10px 10px;
+	max-height: 90px;
+	color: #666666;
+	font-size: 14px;
+	font-weight: 500;
+	font-family: 'Inter', sans-serif;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+  width: 250px !important;
+}
+.delete{
+  color: #202342 !important;
+  background: white;
+  border: none;
+  width: fit-content;
+  position: absolute;
+  top: 0;          /* Position at the top */
+  right: 0;        /* Position at the right */
+  padding: 5px;    /* Add padding for better visual appearance */
+  margin: 10px;    /* Add margin for better visual appearance */
+  cursor: pointer; /* Change cursor to pointer for better UX */
+}
+ 
+.update {
+  color: #202342 !important;
+  background: white;
+  border: none;
+  width: fit-content;
+  position: absolute;
+  top: 0;          /* Position at the top */
+  right: 15;        /* Position at the right */
+  padding: 5px;    /* Add padding for better visual appearance */
+  margin: 10px;    /* Add margin for better visual appearance */
+  cursor: pointer; /* Change cursor to pointer for better UX */
+}
+ 

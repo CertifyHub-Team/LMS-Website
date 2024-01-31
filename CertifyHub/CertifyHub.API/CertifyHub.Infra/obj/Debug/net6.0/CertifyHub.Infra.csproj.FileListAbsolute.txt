@@ -1,0 +1,17 @@
+D:\Training\VisualStudioProjects\CertifyHub.API\CertifyHub.Infra\bin\Debug\net6.0\CertifyHub.Infra.deps.json
+D:\Training\VisualStudioProjects\CertifyHub.API\CertifyHub.Infra\bin\Debug\net6.0\CertifyHub.Infra.runtimeconfig.json
+D:\Training\VisualStudioProjects\CertifyHub.API\CertifyHub.Infra\bin\Debug\net6.0\CertifyHub.Infra.dll
+D:\Training\VisualStudioProjects\CertifyHub.API\CertifyHub.Infra\bin\Debug\net6.0\CertifyHub.Infra.pdb
+D:\Training\VisualStudioProjects\CertifyHub.API\CertifyHub.Infra\bin\Debug\net6.0\CertifyHub.Core.dll
+D:\Training\VisualStudioProjects\CertifyHub.API\CertifyHub.Infra\bin\Debug\net6.0\CertifyHub.Core.pdb
+D:\Training\VisualStudioProjects\CertifyHub.API\CertifyHub.Infra\obj\Debug\net6.0\CertifyHub.Infra.csproj.AssemblyReference.cache
+D:\Training\VisualStudioProjects\CertifyHub.API\CertifyHub.Infra\obj\Debug\net6.0\CertifyHub.Infra.GeneratedMSBuildEditorConfig.editorconfig
+D:\Training\VisualStudioProjects\CertifyHub.API\CertifyHub.Infra\obj\Debug\net6.0\CertifyHub.Infra.AssemblyInfoInputs.cache
+D:\Training\VisualStudioProjects\CertifyHub.API\CertifyHub.Infra\obj\Debug\net6.0\CertifyHub.Infra.AssemblyInfo.cs
+D:\Training\VisualStudioProjects\CertifyHub.API\CertifyHub.Infra\obj\Debug\net6.0\CertifyHub.Infra.csproj.CoreCompileInputs.cache
+D:\Training\VisualStudioProjects\CertifyHub.API\CertifyHub.Infra\obj\Debug\net6.0\CertifyHub.Infra.csproj.CopyComplete
+D:\Training\VisualStudioProjects\CertifyHub.API\CertifyHub.Infra\obj\Debug\net6.0\CertifyHub.Infra.dll
+D:\Training\VisualStudioProjects\CertifyHub.API\CertifyHub.Infra\obj\Debug\net6.0\refint\CertifyHub.Infra.dll
+D:\Training\VisualStudioProjects\CertifyHub.API\CertifyHub.Infra\obj\Debug\net6.0\CertifyHub.Infra.pdb
+D:\Training\VisualStudioProjects\CertifyHub.API\CertifyHub.Infra\obj\Debug\net6.0\CertifyHub.Infra.genruntimeconfig.cache
+D:\Training\VisualStudioProjects\CertifyHub.API\CertifyHub.Infra\obj\Debug\net6.0\ref\CertifyHub.Infra.dll

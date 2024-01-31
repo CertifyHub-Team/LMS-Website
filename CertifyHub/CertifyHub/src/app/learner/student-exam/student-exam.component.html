@@ -1,0 +1,37 @@
+
+<div class="questions" style="overflow-x: hidden;">
+    <div class="row">
+        <div class="job-card" >
+            <h1 style="font-weight: bold;"> {{this.title}}</h1>
+
+            <div style="font-size: 17px; font-weight: bold; position: relative; left: 1150px; bottom: 50px; "> 
+                Remaining Time:
+                <span>{{ hours | number: '2.0-0' }}:</span>
+                <span>{{ minutes | number: '2.0-0' }}:</span>
+                <span>{{ seconds | number: '2.0-0' }}</span>
+              </div>
+        </div>
+        <div class="job-card" *ngFor="let question of _learnerService.ExamQuestion">
+            <div class="job-title-section">
+                <h3 class="job-title">{{question.questiontext}}</h3>
+                <span class="job-type">Out of: {{question.marks}} Marks</span>
+            </div>
+            <div class="job-details-section">
+                <!-- Display MCQ answers here -->
+                <div *ngFor="let answer of question.answers">
+                    <label  class="answer">
+                        <input type="radio" name="{{'answer' + question.questionid}}" [value]="answer.answerid" (change)="AddSolution($event, question.questionid)">
+                        {{answer.answertext}}
+
+
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+ 
+    <div class="row">
+        <button id="uploadButton"  (click)="SaveAnswers()">Save My Answers</button>
+ 
+    </div>
+</div>

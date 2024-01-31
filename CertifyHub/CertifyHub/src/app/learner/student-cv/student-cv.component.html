@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CV Template</title>
+</head>
+<body>
+    <div class="page-border">
+        <button (click)="downloadPdf()" id="cv">Download CV</button>
+    <div class="cv-container" id="cv-container">
+    <header class="cv-header">
+    <h1 style="margin-bottom: 10px;">{{_learnerService.userInfo.firstname}} {{_learnerService.userInfo.lastname}}</h1>
+    <h3>{{_learnerService.userCv.major}}</h3>
+    <ul class="social-media">
+    <li><a href="{{this._learnerService.userCv.gitHubLink}}" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a></li>
+    <li><a href="{{this._learnerService.userCv.linkedintlink}}"  target="_blank"><i class="fa-brands fa-linkedin" id="linkedin"></i> LinkedIn</a></li>
+    <!-- Additional social media accounts -->
+    </ul>
+    </header>
+    <section class="cv-section">
+        <h2 class="cv-section-title">Contact Information</h2>
+        <ul class="cv-contact-info">
+        <li><strong>Email:</strong> {{this._learnerService.userInfo.username}}</li>
+        <li><strong>Phone:</strong> {{this._learnerService.userInfo.phonenumber}}</li>
+        <li><strong>City:</strong> {{this._learnerService.userInfo.address}}</li>
+        </ul>
+        </section>
+    <section class="cv-section">
+    <h2 class="cv-section-title">About Me</h2>
+    <p class="cv-contact-info">
+        {{this._learnerService.userCv.interests}}
+    </p>
+    </section>
+    <section class="cv-section">
+    <h2 class="cv-section-title">Education</h2>
+    <ul class="cv-education">
+    <li><strong>University:</strong> {{this._learnerService.userCv.education}}</li>
+    <li><strong>GPA:</strong> {{this._learnerService.userCv.gpa}} / 4.0</li>
+    </ul>
+    </section>
+    <section class="cv-section">
+    <h2 class="cv-section-title">Experience</h2>
+    <ul class="cv-experience">
+    <li>{{this._learnerService.userCv.experience}}<br>
+    <strong>Projects:</strong> {{this._learnerService.userCv.projects}}<br>
+    </li>
+    <!-- More experiences -->
+    </ul>
+    </section>
+    <section class="cv-section">
+    <h2 class="cv-section-title">Skills</h2>
+    <ul class="cv-skills">
+    <li>{{this._learnerService.userCv.skills}}</li>
+    </ul>
+    </section>
+    </div>
+    <!-- Add this button inside your cv-container div -->
+    
+    </div>
+    </body>
+    
+    </html>

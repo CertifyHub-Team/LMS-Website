@@ -1,0 +1,300 @@
+.job-card {
+    display: flex;
+    width: 1058px; 
+    padding: 16px;
+    padding-top: 50px !important;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    font-family: 'Arial', sans-serif;
+    margin: 20px 20px 30px 60px;
+  }
+  .job-title-section {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+  
+  .job-icon {
+    width: 40px; /* Adjust size as needed */
+    margin-right: 8px;
+  }
+  
+  .job-title {
+    font-size: 24px !important;
+    color: #333;
+    margin-right: auto;
+    font-weight: bold;
+  }
+  
+  .job-type,
+  .job-status {
+    background-color: #e0e0e0;
+    color: #555;
+    padding: 6px 12px;
+    border-radius: 12px;
+    margin-left: 15px;
+    font-size: 0.75rem;
+    font-weight: bold !important;
+  }
+  
+  .job-salary {
+    font-size: 16px;
+    padding: 0px;
+    margin: 0px 0px 7px 0px;
+    text-align: justify;
+  }
+  
+  
+  button{
+    background-color: #202342;
+    color: white !important;
+    margin: 10px 0px 12px 60px; 
+    padding:5px;
+    border-radius: 13px;
+    width: 22%;
+    
+  }
+  #courses{
+    background-color: #202342;
+    color: white !important;
+    margin: 10px 0px 12px 60px; 
+    padding:5px;
+    border-radius: 13px;
+    width: 70%;
+  }
+  #desc{
+    text-align: justify;
+  }
+  
+  
+  a {
+    text-decoration: none;
+    color:white !important;
+  
+  }
+  
+  #tabs{
+  
+  display: flex;
+  flex-direction: column;
+  width: 1058px; 
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  font-family: 'Arial', sans-serif;
+  margin: 20px 20px 20px 47px;
+  }
+  
+  .mat-mdc-tab-group, .mat-mdc-tab-nav-bar {
+     --mdc-tab-indicator-active-indicator-color: #202342!important;
+     --mat-tab-header-disabled-ripple-color: rgba(0, 0, 0, 0.38);
+     --mat-tab-header-pagination-icon-color: #000;
+     --mat-tab-header-inactive-label-text-color: rgba(0, 0, 0, 0.6);
+     --mat-tab-header-active-label-text-color: #3f51b5;
+     --mat-tab-header-active-ripple-color: #202342;
+     --mat-tab-header-inactive-ripple-color: #3f51b5;
+     --mat-tab-header-inactive-focus-label-text-color: rgba(0, 0, 0, 0.6);
+     --mat-tab-header-inactive-hover-label-text-color: rgba(0, 0, 0, 0.6);
+     --mat-tab-header-active-focus-label-text-color: #202342;
+     --mat-tab-header-active-hover-label-text-color: #202342;
+     --mat-tab-header-active-focus-indicator-color: #202342;
+     --mat-tab-header-active-hover-indicator-color: #202342;
+  }
+  
+  
+  
+  #pdfIcon{
+  font-size:28px;
+  color:red;
+  }
+  
+  
+  #materialName{
+  
+  margin-left:10px; 
+  font-size:18px; 
+  color:#202342
+  }
+  
+  .video-container {     width: 320px;     height: 180px;     background-color: #000;     position: relative;     border-radius: 10px;     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);     overflow: hidden; }
+  
+  
+  .play-button {
+  
+    width: 0;
+  
+    height: 0;
+  
+    border-top: 20px solid transparent;
+  
+    border-bottom: 20px solid transparent;
+  
+    border-left: 40px solid #fff;
+  
+    position: absolute;
+  
+    left: 50%;
+  
+    top: 50%;
+  
+    transform: translate(-50%, -50%);
+  
+    cursor: pointer;
+  
+  }
+  
+  
+  
+  
+  
+  
+  
+  .dataTables_paginate .paginate_button {
+  background-color: black !important;
+  color: white;
+  border: 1px solid #f7e5d1 !important;
+  border-radius: 5px; 
+  margin: 2px;
+  padding: 6px 12px;
+  }
+  
+  /* Style the PDF button */
+  .buttons-pdf {
+  background-color: black !important;
+  color: white;
+  border: 1px solid #f7e5d1 !important;
+  border-radius: 5px; 
+  padding: 6px 12px;
+  }
+  
+  /* Style the other format buttons */
+  .buttons-copy, .buttons-excel, .buttons-csv {
+  background-color: black !important;
+  color: white;
+  border: 1px solid #f7e5d1 !important;
+  border-radius: 5px; 
+  padding: 6px 12px;
+  }
+  
+  
+  .card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+  }
+  
+  .card {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%; /* or any other width */
+  }
+  
+  .card h2 {
+  color: #333;
+  margin-bottom: 15px;
+  }
+  
+  .card p {
+  color: #666;
+  font-size: 14px;
+  }
+  
+  .card footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+  }
+  
+  .card footer span {
+  color: #333;
+  font-size: 12px;
+  }
+  
+  .card footer button {
+  background: #202342!important;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  border-radius: 15px;
+  }
+  
+  .card footer button:hover {
+  background: #202342!important;
+  }
+  
+  #trackname{
+    font-size: 20px !important;
+  }
+  #sections{
+    background-color: #202342;
+    color: white !important;
+    margin: 10px 0px 12px 48px; 
+    padding:5px;
+    border-radius: 13px;
+    width: 100%;
+
+  }
+  #createbutton{
+    background-color:#202342; 
+    color:white;
+    margin-left:30px
+  }
+  
+  #cancelbutton{
+    color:white;
+    margin-left:30px
+  }
+  .form-container {
+    max-width: 480px;
+    margin: 20px 0px 20px 17px;
+}
+.delete{
+  color:  #202342 !important;
+  background:white;
+  border: none;
+  /* margin-left: 800px;
+  margin-bottom:400px */
+  width:fit-content;
+  position:relative;
+  left:950px;
+  padding:0;
+  bottom:200px
+}
+
+
+.update{
+  color:  #202342 !important;
+  background:white;
+  border: none;
+  /* margin-left: 800px;
+  margin-bottom:400px */
+  width:fit-content;
+  position:relative;
+  left:850px;
+  padding:0;
+  bottom:200px
+}
+.program{
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+.tit{
+  position: relative;
+  bottom: 20px;
+  margin: 0px;
+}
+.close{
+  width: fit-content;
+  font-weight: 200;
+  border-radius: 3px;
+  font-size: 18px;
+  padding: 10px;}

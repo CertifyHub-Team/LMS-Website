@@ -1,0 +1,326 @@
+<app-admin-header></app-admin-header>
+<app-admin-sidebar></app-admin-sidebar>
+<div class="main-container">
+    <div class="row">
+        <div class="job-card">
+            <div class="job-title-section">
+            <h2 class="job-title">Sections Management Hub</h2>
+        </div>
+    </div>
+
+ <div class="col-2 d-flex flex-column justify-content-center">
+    <button id="sections" mat-button (click)=OpenCreateDialog() >Create New Section</button>
+    <ng-template #createSection>
+    <div class="form-container">
+        <form [formGroup]="CreateSectionForm">
+            <ul class="profile-edit-list row">
+                <li class="weight-500 col-md-12">
+                     <div  class="row ">
+                        <h2 style="margin-left:140px;">Create a New Section</h2>
+                     </div>
+                    <div class="row ">
+                        <div class="form-group col-md-12">
+                            <input class="form-control form-control-lg" type="text" name="sectionname" id="sectionname" matInput formControlName="sectionname"  placeholder="Section Name" [ngClass]="{'isInvalid': CreateSectionForm.get('sectionname')?.invalid}">
+                        </div>
+
+
+                    </div>
+                    <div class="row">    
+                        <div class="form-group col-md-12">
+                            <mat-form-field appearance="fill" style="width:400px; margin-left:31px">
+                                <mat-label>lecture Days</mat-label>
+                            <mat-select  formControlName="lecturedays" >
+                                <mat-option value="" disabled>Select Lecture Days</mat-option>
+                                <mat-option *ngFor="let day of weekdays" [value]="day">{{ day }}</mat-option>
+                            </mat-select>
+                            </mat-form-field>
+                            </div>
+                    </div>
+                    <div class="row">    
+                        <div class="form-group col-md-12">
+                            <mat-form-field appearance="fill" style="width:400px; margin-left:31px">
+                                <mat-label>lecture Time</mat-label>
+                            <mat-select  formControlName="timelecture" >
+                                <mat-option value="" disabled>Select Lecture Time</mat-option>
+                                <mat-option *ngFor="let time of times" [value]="time">{{ time }}</mat-option>
+                            </mat-select>
+                            </mat-form-field>
+                            </div>
+                    </div>
+        
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                   
+                            <input class="form-control form-control-lg" type="text" name="meetinglink" placeholder="meetinglink"id="meetinglink"matInput formControlName="meetinglink" [ngClass]="{'isInvalid': CreateSectionForm.controls['meetinglink'].invalid}">
+                   
+                        </div>
+                    </div>
+                   
+
+                    
+
+                    <!-- <div class="row">
+                        <div class="form-group col-md-12">
+                   
+                            <input class="form-control form-control-lg" type="number" name="courseid" placeholder="Course Id "id="courseid"matInput formControlName="courseid" [ngClass]="{'isInvalid': CreateSectionForm.controls['courseid'].invalid}">
+                   
+                        </div>
+                        
+                    </div>  -->
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <div style="margin-left:30px"> 
+                                <mat-form-field appearance="fill" style="width:198px;">
+                                    <mat-label>Select Course</mat-label>
+                                    <mat-select formControlName="courseid" required>
+                                        <mat-option [value]="this._adminService.courseInfo.courseid">
+                                            {{ this._adminService.courseInfo.coursename }}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group col-md-6">
+                            <div >
+                                <mat-form-field appearance="fill" style="width:198px; margin-left:20px">
+                                    <mat-label>Select Instructor</mat-label>
+                                    <mat-select formControlName="instructorid" required>
+                                        <mat-option *ngFor="let instructor of instructors" [value]="instructor.logins[0].userid">
+                                         {{ instructor.firstname }} {{ instructor.lastname }}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                    <!-- <div class="row">
+                    
+                        <div class="form-group col-md-12">
+                   
+                            <input class="form-control form-control-lg" type="number" name="instructorid" placeholder="Instructor Id "id="instructorid"matInput formControlName="instructorid" [ngClass]="{'isInvalid': CreateSectionForm.controls['instructorid'].invalid}">
+                   
+                        </div>
+                        
+                    </div>  -->
+        
+             
+                    <div class="row">
+                            <input hidden class="form-control form-control-lg date-picker" type="text" formControlName="imagepath">
+                    </div>
+               
+                    <div class="row" style="margin-left:90px;">
+                     <div class="form-group mb-0">
+                        <input  type="button" class="btn" id="createbutton" value="Save" (click)="CreateSection()" [disabled]="CreateSectionForm.invalid">
+                    </div> 
+
+
+                    <div class="form-group mb-0">
+                        <input  type="button" class="btn btn-secondary" id="cancelbutton" value="Cancel" (click)="CloseCreateDialog()" >
+                    </div> 
+                    </div>
+                </li>
+            </ul>                                              
+        </form>
+   </div>
+       
+        
+</ng-template> 
+
+    </div>
+     <div class="job-card row" id="card" *ngFor="let section of this._adminService.courseSections">
+        
+        <div class="col-2">
+           
+            <div class="d-flex align-items-center">
+                <img [src]="getSectionImagePath(section)" [alt]="getAltText(section)" class="avatar-photo rounded-circle" style="width: 150px; height: 150px;">
+              
+              
+            </div>
+        
+              
+        </div>
+        <div class="col-2 d-flex flex-column justify-content-center">
+            <h2 class="job-title" id="trackname">{{section.sectionname}}</h2>
+        </div>
+        <div class="col-3 d-flex flex-column justify-content-center" id="lecture">
+            <span class="job-type">Lecture Days: {{section.lecturedays}}</span>
+        </div>
+        <div class="col-3 d-flex flex-column justify-content-center" id="lecture">
+            <span class="job-type">Time Lecture: {{section.timelecture}}</span>
+        </div>
+        <div class="col-2 d-flex flex-column justify-content-center">
+            <button id="courses" mat-button (click)="GetStudents(section.sectionid)" >View Students</button>
+        </div>
+
+
+
+        <button class="delete" (click)="OpenConfirmDeleteDialog(section.sectionid)">
+            <i class="fa-solid fa-xmark" ></i>
+        </button>
+
+        <button class="update" (click)="OpenUpdateDialog(section)">
+            <i class="fa-regular fa-pen-to-square"></i>
+        </button>
+        
+
+        <ng-template #updateSection>
+            <div class="form-container">
+                <form [formGroup]="UpdateSectionForm">
+                    <ul class="profile-edit-list row">
+                        <li class="weight-500 col-md-12">
+                             <div  class="row ">
+                                <h2 style="margin-left:160px;">Update Section</h2>
+                             </div>
+                            <div class="row ">
+
+                                <div class="form-group col-md-12">
+                                    <input class="form-control form-control-lg" type="text" name="sectionname" id="sectionname" matInput formControlName="sectionname"  placeholder="Section Name" [ngClass]="{'isInvalid': UpdateSectionForm.get('sectionname')?.invalid}">
+                                </div>
+        
+        
+                            </div>
+                            <div class="row">    
+                                <div class="form-group col-md-12">
+                                    <mat-form-field appearance="fill" style="width:400px; margin-left:31px">
+                                        <mat-label>lecture Days</mat-label>
+                                    <mat-select  formControlName="lecturedays" >
+                                        <mat-option value="" disabled>Select Lecture Days</mat-option>
+                                        <mat-option *ngFor="let day of weekdays" [value]="day">{{ day }}</mat-option>
+                                    </mat-select>
+                                    </mat-form-field>
+                                    </div>
+                            </div>
+                
+                            <div class="row">    
+                                <div class="form-group col-md-12">
+                                    <mat-form-field appearance="fill" style="width:400px; margin-left:31px">
+                                        <mat-label>lecture Time</mat-label>
+                                    <mat-select  formControlName="timelecture" >
+                                        <mat-option value="" disabled>Select Lecture Time</mat-option>
+                                        <mat-option *ngFor="let time of times" [value]="time">{{ time }}</mat-option>
+                                    </mat-select>
+                                    </mat-form-field>
+                                    </div>
+                            </div>
+                
+                            <div class="row">
+                                <div class="form-group col-md-12">
+                           
+                                    <input class="form-control form-control-lg" type="text" name="meetinglink" placeholder="meetinglink"id="meetinglink"matInput formControlName="meetinglink" [ngClass]="{'isInvalid': UpdateSectionForm.controls['meetinglink'].invalid}">
+                           
+                                </div>
+                            </div>
+                           
+        
+                            
+        
+                            <!-- <div class="row">
+                                <div class="form-group col-md-12">
+                           
+                                    <input class="form-control form-control-lg" type="number" name="courseid" placeholder="Course Id "id="courseid"matInput formControlName="courseid" [ngClass]="{'isInvalid': UpdateSectionForm.controls['courseid'].invalid}">
+                           
+                                </div>
+                                
+                            </div>  -->
+                            <div class="row">
+                                <!-- <div class="form-group col-md-6">
+                                    <div style="margin-left:30px"> 
+                                        <mat-form-field appearance="fill" style="width:198px;">
+                                            <mat-label>Select Course</mat-label>
+                                            <mat-select formControlName="courseid" required>
+                                                <mat-option [value]="this._adminService.courseInfo.courseid">
+                                                    {{ this._adminService.courseInfo.coursename }}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                </div> -->
+        
+        
+                                <div class="form-group col-md-6">
+                                    <div >
+                                        <mat-form-field appearance="fill" style="width:400px; margin-left:31px">
+                                            <mat-label>Select Instructor</mat-label>
+                                            <mat-select formControlName="instructorid" required>
+                                                <mat-option *ngFor="let instructor of instructors" [value]="instructor.logins[0].userid">
+                                                    {{ instructor.firstname }} {{ instructor.lastname }}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            
+                            <!-- <div class="row">
+                            
+                                <div class="form-group col-md-12">
+                           
+                                    <input class="form-control form-control-lg" type="number" name="instructorid" placeholder="Instructor Id "id="instructorid"matInput formControlName="instructorid" [ngClass]="{'isInvalid': UpdateSectionForm.controls['instructorid'].invalid}">
+                           
+                                </div>
+                                
+                            </div>  -->
+                
+                     
+                            
+                        
+                        <div class="row">
+                            <input hidden class="form-control form-control-lg date-picker" type="number" formControlName="courseid">
+                    </div>
+                            <div class="row">
+                                    <input hidden class="form-control form-control-lg date-picker" type="text" formControlName="imagepath">
+                            </div>
+                            
+                            <div class="row">
+                                <input hidden class="form-control form-control-lg date-picker" type="number" formControlName="sectionid">
+                        </div>
+                         
+                       
+                            <div class="row" style="margin-left:90px;">
+
+
+                             <div class="form-group mb-0">
+                                <input  type="button" class="btn" id="createbutton" value="Save" (click)="UpdateSection()" [disabled]="UpdateSectionForm.invalid">
+                            </div> 
+        
+        
+                            <div class="form-group mb-0">
+                                <input  type="button" class="btn btn-secondary" id="cancelbutton" value="Cancel" (click)="CloseUpdateDialog()" >
+                            </div> 
+                            </div>
+                        </li>
+                    </ul>                                              
+                </form>
+           </div>
+               
+                
+        </ng-template> 
+        
+
+
+
+
+
+
+
+        <ng-template #deleteSection>
+ 
+            <h1 mat-dialog-title style="margin-left:70px">Delete Section</h1>
+            <div mat-dialog-content>
+              Would you like to delete the section?
+            </div>
+            <div mat-dialog-actions>
+              <button mat-button mat-dialog-close="no"  cdkFocusInitial>No</button>
+              <button  mat-button mat-dialog-close="yes" >Yes</button>
+            </div>
+             
+        </ng-template>
+
+    </div>
+</div>
+</div>

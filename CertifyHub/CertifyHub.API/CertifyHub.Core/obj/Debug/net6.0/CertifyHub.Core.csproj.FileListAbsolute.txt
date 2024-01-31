@@ -1,0 +1,12 @@
+D:\Training\VisualStudioProjects\CertifyHub.API\CertifyHub.Core\bin\Debug\net6.0\CertifyHub.Core.deps.json
+D:\Training\VisualStudioProjects\CertifyHub.API\CertifyHub.Core\bin\Debug\net6.0\CertifyHub.Core.dll
+D:\Training\VisualStudioProjects\CertifyHub.API\CertifyHub.Core\bin\Debug\net6.0\CertifyHub.Core.pdb
+D:\Training\VisualStudioProjects\CertifyHub.API\CertifyHub.Core\obj\Debug\net6.0\CertifyHub.Core.csproj.AssemblyReference.cache
+D:\Training\VisualStudioProjects\CertifyHub.API\CertifyHub.Core\obj\Debug\net6.0\CertifyHub.Core.GeneratedMSBuildEditorConfig.editorconfig
+D:\Training\VisualStudioProjects\CertifyHub.API\CertifyHub.Core\obj\Debug\net6.0\CertifyHub.Core.AssemblyInfoInputs.cache
+D:\Training\VisualStudioProjects\CertifyHub.API\CertifyHub.Core\obj\Debug\net6.0\CertifyHub.Core.AssemblyInfo.cs
+D:\Training\VisualStudioProjects\CertifyHub.API\CertifyHub.Core\obj\Debug\net6.0\CertifyHub.Core.csproj.CoreCompileInputs.cache
+D:\Training\VisualStudioProjects\CertifyHub.API\CertifyHub.Core\obj\Debug\net6.0\CertifyHub.Core.dll
+D:\Training\VisualStudioProjects\CertifyHub.API\CertifyHub.Core\obj\Debug\net6.0\refint\CertifyHub.Core.dll
+D:\Training\VisualStudioProjects\CertifyHub.API\CertifyHub.Core\obj\Debug\net6.0\CertifyHub.Core.pdb
+D:\Training\VisualStudioProjects\CertifyHub.API\CertifyHub.Core\obj\Debug\net6.0\ref\CertifyHub.Core.dll

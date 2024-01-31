@@ -1,0 +1,54 @@
+<app-student-header></app-student-header>
+<app-student-sidebar></app-student-sidebar>
+ 
+<div class="main-container">
+    <div class="row">
+        <div class="job-card">
+            <div class="job-title-section">
+            <h2 class="job-title">My Certificates</h2>
+        </div>
+    </div>
+    
+    <div class="job-card row" *ngFor="let certificate of certificates">
+     
+      <div class="certificate-card">
+        <div>
+          <img src="../assets/vendors/images/winner.png" width="90px">
+        </div>
+ 
+        <div class="date-container">
+          <p id="p-coursename"><b>{{ certificate.course.coursename }}</b></p>
+          <p><b>Certified {{ certificate.releasedate | date: 'MMM d, y'  }} </b></p>
+          <p style="font-size:13px;">Expires {{ certificate.expiredate |  date: 'MMM d, y' }}</p>
+        </div>
+       
+       <div class="button-container">
+         
+        <a [href]="certificate.certificatecloudinaryurl"  target="_blank">
+          <button mat-button >View</button>
+        </a>
+ 
+   
+        <button mat-button color="primary" (click)="downloadCertificate(certificate)">
+          Download
+        </button>
+ 
+ 
+ 
+        </div>
+ 
+        <!-- <a [href]="certificate.certificatecloudinaryurl" download="certificate.pdf">
+          <button mat-button color="primary">Download</button>
+        </a> -->
+ 
+      </div>
+    </div>
+</div>
+ 
+ 
+ 
+<!--
+<a [href]="pdfUrl" download="certificate.pdf">
+  <button mat-button color="primary">Download</button>
+</a> -->
+ 

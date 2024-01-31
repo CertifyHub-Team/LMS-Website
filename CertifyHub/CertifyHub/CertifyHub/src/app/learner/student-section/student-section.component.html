@@ -1,0 +1,660 @@
+<!-- <app-student-header></app-student-header>
+<app-student-sidebar></app-student-sidebar>
+ 
+<div class="main-container" >
+    <div class="row">
+        <div class="job-card">
+            <div class="job-title-section">
+            <h2 class="job-title">{{this._learnerService.courseSection[0].sectionname}}</h2>
+            <span class="job-type">Time Lecture: {{this._learnerService.courseSection[0].timelecture}}</span>
+            <span class="job-type">Lecture Days: {{this._learnerService.courseSection[0].lecturedays}}</span>
+            <button mat-button style="margin-right: 25px;" > <a href="{{this._learnerService.courseSection[0].meetinglink}}"> Join Lecture Meeting </a> </button>
+            <a class="dropdown-toggle no-arrow" href="#" role="button" data-toggle="dropdown" (click)="GetSectionNotifications(this.itemId)">
+                <i style="color: black; font-size: 22px;" class="icon-copy dw dw-notification"></i>
+                <span class="badge notification-active"></span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right">
+                <div class="notification-lists customscroll">
+                    <ul>
+                        <li *ngFor="let notification of this._learnerService.sectionNotifications" >
+                            <a href="#" [ngStyle]="{ 'background-color': isEndDatePassed(notification.notificationenddate) ? '#EEEEEE' : '' }">
+                                <h3 style="font-weight: bold;" >
+                                    {{ notification.notificationtext }}
+                                  </h3>
+
+                                <p style="color: gray; font-size:12px; padding-top: 0px; position: relative; bottom: 10px;">{{notification.notificationstartdate | date: 'MMM d, y'}}</p>
+                                <hr>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+            <div class="job-details-section">        
+            </div>
+        </div>
+ 
+    </div>
+ 
+    <button mat-button  id="report" (click)="generatePDF()">Get Report</button>
+ 
+    <div class="row" id="tabs" >
+        <mat-tab-group  >
+            <mat-tab label="Material"  >
+                <div *ngFor="let material of this._learnerService.courseMaterial" style="margin-bottom:20px">
+ 
+                    <div style="margin-top:30px; margin-left:20px">
+                       <div class="row" style="margin-bottom: 20px; display: block;">
+                        <span id="materialName" class="row" style="margin-bottom: 20px;"> <strong >  {{material.materialname}}  </strong></span>
+ 
+                    <div style="margin-left:20px">
+                        <a  href="{{ material.materialpath }}" target="_blank">
+                            <i class="fa fa-file-pdf-o" id="pdfIcon" style="margin-bottom: 10px;"></i>
+                            <span style="color: black; font-size: 16px;  margin-left: 10px; font-weight: 700;">Attached File</span>
+                        </a>
+                       
+                       
+ 
+ 
+                       
+ 
+                       <div class="row" style="margin-bottom: 20px; margin-top: 10px; margin-left: 4px; display: block;">
+ 
+                        <div class="video-container" *ngIf="material.videourl!=null ">
+                            <a href="{{ material.videourl }}" target="_blank" class="play-button">
+                               
+                            </a>    
+                        </div>
+                         
+                        </div>
+                    </div>
+                </div>
+                       <hr>
+                    </div>
+                    <div>
+ 
+                     
+                    </div>
+                </div>
+               
+ 
+ 
+ 
+            </mat-tab>
+            <mat-tab label="Attendance">
+ 
+<div class="row" style="margin-top: 30px; margin-bottom:30px">
+ 
+    <div class="col-11 justify-content-center mx-auto">
+       
+        <table class="table table-bordered ">
+           
+            <thead  >
+                <tr>
+                    <th class="col-5" >Date of Attendance</th>
+                    <th class="col-5">Status</th>
+             
+                </tr>
+            </thead>
+            <tbody *ngFor="let section of this._learnerService.courseSection">
+                   <tr *ngFor="let attendance of section.attendances">
+ 
+                        <td>{{attendance.dateofattendance| date: 'MMM d, y'  }}</td>
+                        <td>{{attendance.status}}</td>
+                     
+                    </tr>
+               
+            </tbody>
+            <tfoot>
+                <tr>
+                  <td colspan="2"> <strong>Total Attendance: {{this._learnerService.presentcount}} </strong> </td>
+                 
+                </tr>
+                <tr><td colspan="2"><strong> Total Absence: {{this._learnerService.absentcount}}</strong></td></tr>
+              </tfoot>
+        </table>
+ 
+        <div style="width: 30%; margin-left: auto; margin-right: auto;">
+            <canvas #myChart
+                    baseChart
+                    [data]="pieChartData"
+                    [type]="pieChartType">
+            </canvas>    
+        </div>
+    </div>
+</div>
+ 
+            </mat-tab>
+ 
+            <mat-tab label="Assesment">
+ 
+ 
+                 *ngFor="let section of this._learnerService.courseSection"
+                 *ngFor="let attendance of section.attendances" -->
+                 <!-- <div class="card-container">
+                    <div class="card" *ngFor="let section of this._learnerService.assessmentSection">
+                    <h2> {{ section.title}}</h2>
+                    <p>{{section.description}}</p>
+                    <div *ngIf="section.attachfile !=null">
+                     
+                    <a href="{{ section.attachfile }}" target="_blank">
+                        <i class="fa fa-file-pdf-o" id="pdfIcon" style="margin-bottom: 10px;"></i>
+                    </a>   Assignment </div>
+                    <footer>
+                        <span class="row">
+                    <span > <strong>Starts At: </strong> {{section.startdate | date: 'MMM d, y' }} , {{section.starttime| date: 'shortTime'  }}</span>
+                    <span><strong>Ends At: </strong> {{section.enddate | date: 'MMM d, y' }}, {{section.endtime | date: 'shortTime'  }}</span>
+                   
+                    <span>  
+                       
+                     
+ 
+                        <span>{{ section.studentgrade }}</span>
+                        <strong>Out of {{ section.assessmentscore }} Marks </strong>    
+                    </span>
+                </span>
+                     <div  id="buttonsstyle">
+ 
+                        <button  (click)="OpenMarkDialog(section.assessmentid, section.assessmenttype)">View Mark</button>
+                        <button id="uploadButton" *ngIf="section.assessmenttype === 'Exam'" (click)="OpenAttempDialog(section.assessmentid, section.title, section.startdate, section.enddate, section.starttime, section.endtime)">Attempt Now</button>
+                        <button id="uploadButton" *ngIf="section.assessmenttype === 'Assignment'" (click)="toggleFileUploadForm(section.assessmentid, section.startdate, section.enddate, section.starttime, section.endtime)">Upload Submission</button>
+                    </div>
+                       
+                    <form [formGroup]="UploadFormSolution" (ngSubmit)="onSubmit()">
+                        <div *ngIf="showFileUploadForm" class="modal-wrapper">
+                          <div class="upload-form"> -->
+                            <!-- Form Title and Description -->
+                            <!-- <div class="form-header">
+                              <h2 class="form-title">File Upload Form</h2>
+                              <p class="form-description">Upload Your Solution Here</p>
+                            </div>
+                             -->
+                            <!-- File Upload Input -->
+                            <!-- <div class="file-input-container">
+                              <input type="file" id="file" name="file" (change)="UploadFile($event)" formControlName="Usersolutiontext" required/>
+                              <label for="file" class="upload-button">UPLOAD</label>
+                              <div class="file-input-placeholder">
+                                {{ selectedFileName || 'Drag and drop files here or click to select' }}
+                              </div>
+                            </div>
+                             -->
+                            <!-- Selected File Name -->
+                            <!-- <div *ngIf="selectedFileName" class="selected-file-name">
+                              Selected file: {{ selectedFileName }}
+                            </div> -->
+                            
+                            <!-- Hidden Inputs for Other Form Data -->
+                            <!-- <input type="hidden" formControlName="Userid" >
+                            <input type="hidden" formControlName="Assessmentid">
+                            <input type="hidden" formControlName="Attemptdate">
+                            <input type="hidden" formControlName="Questionid">
+                            <input type="hidden" formControlName="Answerid"> -->
+                            
+                            <!-- Form Buttons -->
+                            <!-- <div class="form-buttons">
+                              <button type="button" class="form-button cancel-button" (click)="CancleToggle()">CANCEL</button>
+                              <button type="submit" class="form-button submit-button">SUBMIT</button>
+                            </div>
+                          </div>
+                        </div>
+                      </form>
+                       
+ 
+                   
+                    </footer>
+                    </div>
+                    </div>
+ 
+ 
+            </mat-tab>
+           
+          </mat-tab-group>
+    </div>
+</div>
+ 
+ 
+ 
+ 
+<ng-template #viewmark  >
+<div class="markdialog"> -->
+    <!-- <div *ngIf="_learnerService.grade===null">  
+        <h2>Not Graded</h2>
+    </div> -->
+    <!-- <div  *ngIf="_learnerService.grade !=null">
+        <h2>Your Grade is <strong > {{_learnerService.grade.studentgrade  }}</strong></h2>
+    </div> -->
+    <!-- <div *ngIf="_learnerService.grade?.studentgrade === null">
+        <h2>Not Graded</h2>
+    </div>
+    <div *ngIf="_learnerService.grade?.studentgrade != null">
+        <h2>Your Grade is <strong>{{_learnerService.grade?.studentgrade}}</strong></h2>
+    </div>
+    <button type="button" class="btn" id="close" (click)="CloseMarkDialog()">Close</button>
+ 
+</div>
+</ng-template>
+
+
+<ng-template #viewscore  >
+    <div class="markdialog">
+        <div *ngIf=" this._learnerService.userScore === null">
+            <h2>Not Graded</h2>
+        </div>
+        <div *ngIf="_learnerService.userScore != null">
+            <h2>Your Grade is <strong>{{_learnerService.userScore}}</strong></h2>
+        </div>
+       
+        <button type="button" class="btn" id="close" (click)="CloseMarkDialog()">Close</button>
+     
+    </div>
+    </ng-template>
+ 
+ 
+
+
+
+<ng-template #attemp>
+    <div class="attempdialog">
+        <div>
+            <h4 >Before attempting the exam, please make sure you are well-prepared and focused.</h4>
+        </div>
+        <button type="button" class="btn" id="attemp" (click)="GoToExam(this.assessmentId, this.examTitle,  this.startdate.toString(),  this.enddate.toString(),  this.starttime.toString(),  this.endtime.toString())">Attempt Now</button>
+        
+    </div>
+</ng-template>
+
+<ng-template #viewupload  >
+    <div class="markdialog">
+        <div >
+         
+            <h2>Your Submission </h2>
+            <a [href]="getLocalFilePath()" download>
+                <i class="fa fa-file-pdf-o" id="pdfIcon" style="margin-bottom: 10px;"></i>
+                <span style="color: black; font-size: 14px;  margin-left: 10px;  font-weight: 700;">{{this.userSol}}</span>
+              </a>
+              
+        </div>
+        <button type="button" class="btn" id="closeUpload" (click)="CloseMarkDialog()">Close</button>
+     
+    </div>
+</ng-template>     -->
+
+
+
+<!-- <ng-template #submission  >
+    <div class="markdialog">
+      
+
+      <div *ngIf="_learnerService.grade?.studentgrade === null">
+        <h2>Not Graded</h2>
+      </div>
+      <div *ngIf="_learnerService.grade?.studentgrade !== null">
+        <h2>Your Grade is <strong>{{ _learnerService.grade?.studentgrade }}</strong></h2>
+      </div>
+
+      <button type="button" class="btn" id="close" (click)="CloseSubmissionDialog()">Close</button>
+    </div>
+</ng-template> --> 
+
+
+
+<app-student-header></app-student-header>
+<app-student-sidebar></app-student-sidebar>
+ 
+<div class="main-container" >
+    <div class="row">
+        <div class="job-card">
+            <div class="job-title-section">
+            <h2 class="job-title">{{this._learnerService.courseSection[0].sectionname}}</h2>
+            <span class="job-type">Time Lecture: {{this._learnerService.courseSection[0].timelecture}}</span>
+            <span class="job-type">Lecture Days: {{this._learnerService.courseSection[0].lecturedays}}</span>
+            <button mat-button style="margin-right: 25px;" > <a href="{{this._learnerService.courseSection[0].meetinglink}}"> Join Lecture Meeting </a> </button>
+            <a class="dropdown-toggle no-arrow" href="#" role="button" data-toggle="dropdown" (click)="GetSectionNotifications(this.itemId)">
+                <i style="color: black; font-size: 22px;" class="icon-copy dw dw-notification"></i>
+                <span class="badge notification-active"></span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right">
+                <div class="notification-lists customscroll">
+                    <ul>
+                        <li *ngFor="let notification of this._learnerService.sectionNotifications" >
+                            <a href="#" [ngStyle]="{ 'background-color': isEndDatePassed(notification.notificationenddate) ? '#EEEEEE' : '' }">
+                                <h3 style="font-weight: bold;" >
+                                    {{ notification.notificationtext }}
+                                  </h3>
+ 
+                                <p style="color: gray; font-size:12px; padding-top: 0px; position: relative; bottom: 10px;">{{notification.notificationstartdate | date: 'MMM d, y'}}</p>
+                                <hr>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+            <div class="job-details-section">        
+            </div>
+        </div>
+ 
+    </div>
+ 
+    <button mat-button  id="report" (click)="generatePDF()">Get Report</button>
+ 
+    <div class="row" id="tabs" >
+        <mat-tab-group  >
+            <mat-tab label="Material"  >
+                <div *ngFor="let material of this._learnerService.courseMaterial" style="margin-bottom:20px; overflow-x: hidden;">
+ 
+                    <div style="margin-top:30px; margin-left:20px">
+                       <div class="row" style="margin-bottom: 20px; display: block;">
+                        <span id="materialName" class="row" style="margin-bottom: 20px;"> <strong >  {{material.materialname}}  </strong></span>
+ 
+                    <div style="margin-left:20px">
+                        <a  href="/assets/uploads/{{ material.materialpath }}" target="_blank">
+                            <i class="fa fa-file-pdf-o" id="pdfIcon" style="margin-bottom: 10px;"></i>
+                            <span style="color: black; font-size: 16px;  margin-left: 10px; font-weight: 700;">Attached File</span>
+                        </a>
+                       
+                       
+ 
+ 
+                       
+ 
+                       <div class="row" style="margin-bottom: 20px; margin-top: 10px; margin-left: 4px; display: block;">
+ 
+                        <div class="video-container" *ngIf="material.videourl!=null ">
+                            <a href="{{ material.videourl }}" target="_blank" class="play-button">
+                               
+                            </a>    
+                        </div>
+                         
+                        </div>
+                    </div>
+                </div>
+                       <hr>
+                    </div>
+                    <div>
+ 
+                     
+                    </div>
+                </div>
+               
+ 
+ 
+ 
+            </mat-tab>
+            <mat-tab label="Attendance">
+ 
+<div class="row" style="margin-top: 30px; margin-bottom:30px; overflow-x: hidden">
+ 
+    <div class="col-11 justify-content-center mx-auto" >
+       
+        <table class="table table-bordered " style=" overflow-x: hidden">
+           
+            <thead  >
+                <tr>
+                    <th class="col-5" >Date of Attendance</th>
+                    <th class="col-5">Status</th>
+             
+                </tr>
+            </thead>
+            <tbody *ngFor="let section of this._learnerService.courseSection">
+                   <tr *ngFor="let attendance of section.attendances">
+ 
+                        <td>{{attendance.dateofattendance| date: 'MMM d, y'  }}</td>
+                        <td>{{attendance.status}}</td>
+                     
+                    </tr>
+               
+            </tbody>
+            <tfoot>
+                <tr>
+                  <td colspan="2"> <strong>Total Attendance: {{this._learnerService.presentcount}} </strong> </td>
+                 
+                </tr>
+                <tr><td colspan="2"><strong> Total Absence: {{this._learnerService.absentcount}}</strong></td></tr>
+              </tfoot>
+        </table>
+ 
+        <div style="width: 30%; margin-left: auto; margin-right: auto; overflow-x: hidden;">
+            <canvas #myChart
+                    baseChart
+                    [data]="pieChartData"
+                    [type]="pieChartType">
+            </canvas>    
+        </div>
+    </div>
+</div>
+ 
+            </mat-tab>
+ 
+            <mat-tab label="Assesment">
+ 
+ 
+                <!-- *ngFor="let section of this._learnerService.courseSection"
+                 *ngFor="let attendance of section.attendances" -->
+                 <div class="card-container">
+                    <div class="card" *ngFor="let section of this._learnerService.assessmentSection">
+                    <h2> {{ section.title}}</h2>
+                    <p>{{section.description}}</p>
+                    <div *ngIf="section.attachfile !=null">
+                     
+                    <a href="/assets/uploads/{{ section.attachfile }}" target="_blank">
+                        <i class="fa fa-file-pdf-o" id="pdfIcon" style="margin-bottom: 10px;"></i>
+                    </a>   Assignment </div>
+                    <footer>
+                        <span class="row">
+                    <span > <strong>Starts At: </strong> {{section.startdate | date: 'MMM d, y' }} , {{section.starttime| date: 'shortTime'  }}</span>
+                    <span><strong>Ends At: </strong> {{section.enddate | date: 'MMM d, y' }}, {{section.endtime | date: 'shortTime'  }}</span>
+                   
+                    <span>  
+                       
+                     
+ 
+                        <span>{{ section.studentgrade }}</span>
+                        <strong>Out of {{ section.assessmentscore }} Marks </strong>    
+                    </span>
+                </span>
+                     <div  id="buttonsstyle">
+ 
+                        <button  (click)="OpenMarkDialog(section.assessmentid, section.assessmenttype)">View Mark</button>
+                        <button id="uploadButton" *ngIf="section.assessmenttype === 'Exam'" (click)="OpenAttempDialog(section.assessmentid, section.title, section.startdate, section.enddate, section.starttime, section.endtime)">Attempt Now</button>
+                        <button id="uploadButton" *ngIf="section.assessmenttype === 'Assignment'" (click)="toggleFileUploadForm(section.assessmentid, section.startdate, section.enddate, section.starttime, section.endtime)">Upload Submission</button>
+                    </div>
+                       
+                    <form [formGroup]="UploadFormSolution" (ngSubmit)="onSubmit()">
+                        <div *ngIf="showFileUploadForm" class="modal-wrapper">
+                          <div class="upload-form">
+                            <!-- Form Title and Description -->
+                            <div class="form-header">
+                              <h2 class="form-title">File Upload Form</h2>
+                              <p class="form-description">Upload Your Solution Here</p>
+                            </div>
+                           
+                            <!-- File Upload Input -->
+                            <div class="file-input-container">
+                              <input type="file" id="file" name="file" (change)="UploadFile($event)" formControlName="Usersolutiontext" required/>
+                              <label for="file" class="upload-button">UPLOAD</label>
+                              <div class="file-input-placeholder">
+                                {{ selectedFileName || 'Drag and drop files here or click to select' }}
+                              </div>
+                            </div>
+                           
+                            <!-- Selected File Name -->
+                            <div *ngIf="selectedFileName" class="selected-file-name">
+                              Selected file: {{ selectedFileName }}
+                            </div>
+                           
+                            <!-- Hidden Inputs for Other Form Data -->
+                            <input type="hidden" formControlName="Userid" >
+                            <input type="hidden" formControlName="Assessmentid">
+                            <input type="hidden" formControlName="Attemptdate">
+                            <input type="hidden" formControlName="Questionid">
+                            <input type="hidden" formControlName="Answerid">
+                           
+                            <!-- Form Buttons -->
+                            <div class="form-buttons">
+                              <button type="button" class="form-button cancel-button" (click)="CancleToggle()">CANCEL</button>
+                              <button type="submit" class="form-button submit-button">SUBMIT</button>
+                            </div>
+                          </div>
+                        </div>
+                      </form>
+                       
+ 
+                   
+                    </footer>
+                    </div>
+                    </div>
+ 
+ 
+            </mat-tab>
+           
+          </mat-tab-group>
+    </div>
+</div>
+ 
+ 
+ 
+ 
+<ng-template #viewmark  >
+<div class="markdialog">
+    <!-- <div *ngIf="_learnerService.grade===null">  
+        <h2>Not Graded</h2>
+    </div> -->
+    <!-- <div  *ngIf="_learnerService.grade !=null">
+        <h2>Your Grade is <strong > {{_learnerService.grade.studentgrade  }}</strong></h2>
+    </div> -->
+    <div *ngIf="_learnerService.grade?.studentgrade === null">
+        <h2>Not Graded</h2>
+    </div>
+    <div *ngIf="_learnerService.grade?.studentgrade != null">
+        <h2>Your Grade is <strong>{{_learnerService.grade?.studentgrade}}</strong></h2>
+    </div>
+    <button type="button" class="btn" id="close" (click)="CloseMarkDialog()">Close</button>
+ 
+</div>
+</ng-template>
+ 
+ 
+<ng-template #viewscore  >
+    <div class="markdialog">
+        <div *ngIf=" this._learnerService.userScore === null">
+            <h2>Not Graded</h2>
+        </div>
+        <div *ngIf="_learnerService.userScore != null">
+            <h2>Your Grade is <strong>{{_learnerService.userScore}}</strong></h2>
+        </div>
+       
+        <button type="button" class="btn" id="close" (click)="CloseMarkDialog()">Close</button>
+     
+    </div>
+    </ng-template>
+ 
+ 
+ 
+ 
+ 
+<ng-template #attemp>
+    <div class="attempdialog">
+        <div>
+            <h4 >Before attempting the exam, please make sure you are well-prepared and focused.</h4>
+        </div>
+        <button type="button" class="btn" id="attemp" (click)="GoToExam(this.assessmentId, this.examTitle,  this.startdate.toString(),  this.enddate.toString(),  this.starttime.toString(),  this.endtime.toString())">Attempt Now</button>
+       
+    </div>
+</ng-template>
+ 
+<ng-template #viewupload  >
+    <div class="markdialog">
+        <div >
+         
+            <h2>Your Submission </h2>
+            <a [href]="getLocalFilePath()" download>
+                <i class="fa fa-file-pdf-o" id="pdfIcon" style="margin-bottom: 10px;"></i>
+                <span style="color: black; font-size: 14px;  margin-left: 10px;  font-weight: 700;">{{this.userSol}}</span>
+              </a>
+ 
+              <span><button class="update" (click)="OpenUpdateSubmisssionDialog(userSolution)">
+                <i class="fa-regular fa-pen-to-square"></i>
+            </button>
+            <button class="delete" (click)="OpenConfirmDeleteSubmissionDialog(userSolutionId)" >
+                <i class="fas fa-trash-alt" style="color: brown;"></i>
+ 
+            </button></span>
+             
+        </div>
+        <button type="button" class="btn" id="closeUpload" (click)="CloseMarkDialog()">Close</button>
+     
+    </div>
+</ng-template>    
+ 
+ 
+ 
+<!-- <ng-template #submission  >
+    <div class="markdialog">
+     
+ 
+      <div *ngIf="_learnerService.grade?.studentgrade === null">
+        <h2>Not Graded</h2>
+      </div>
+      <div *ngIf="_learnerService.grade?.studentgrade !== null">
+        <h2>Your Grade is <strong>{{ _learnerService.grade?.studentgrade }}</strong></h2>
+      </div>
+ 
+      <button type="button" class="btn" id="close" (click)="CloseSubmissionDialog()">Close</button>
+    </div>
+</ng-template> -->
+ 
+ 
+<ng-template #updateSubmission  >
+    <form [formGroup]="UploadFormSolution" (ngSubmit)="UpdateSubmission()">
+        <div class="modal-wrapper">
+          <div class="upload-form">
+            <!-- Form Title and Description -->
+            <div class="form-header">
+              <h2 class="form-title">File Upload Form</h2>
+              <p class="form-description">Upload Your Solution Here</p>
+            </div>
+           
+            <!-- File Upload Input -->
+            <div class="file-input-container">
+              <input type="file" id="file" name="file" (change)="editSubmissionFile($event)" formControlName="Usersolutiontext" required/>
+              <label for="file" class="upload-button">UPLOAD</label>
+              <div class="file-input-placeholder">
+                {{ selectedFileName || 'Drag and drop files here or click to select' }}
+              </div>
+            </div>
+           
+            <!-- Selected File Name -->
+            <div *ngIf="selectedFileName" class="selected-file-name">
+              Selected file: {{ selectedFileName }}
+            </div>
+           
+            <!-- Hidden Inputs for Other Form Data -->
+            <input type="hidden" formControlName="Userid" >
+            <input type="hidden" formControlName="Assessmentid">
+            <input type="hidden" formControlName="Attemptdate">
+            <input type="hidden" formControlName="Questionid">
+            <input type="hidden" formControlName="Answerid">
+           
+            <!-- Form Buttons -->
+            <div class="form-buttons">
+              <button type="button" class="form-button cancel-button" (click)="CloseUpdateSubmissionDialog()">CANCEL</button>
+              <button type="submit" class="form-button submit-button">SUBMIT</button>
+            </div>
+          </div>
+        </div>
+      </form>
+</ng-template>
+ 
+<ng-template #deleteSubmission>
+ 
+    <h1 mat-dialog-title style="margin-left:70px">Delete Submission</h1>
+    <div mat-dialog-content>
+      Would you like to delete this Submission?
+    </div>
+    <div mat-dialog-actions>
+      <button mat-button mat-dialog-close="no"  cdkFocusInitial>No</button>
+      <button  mat-button mat-dialog-close="yes" >Yes</button>
+    </div>
+     
+</ng-template>

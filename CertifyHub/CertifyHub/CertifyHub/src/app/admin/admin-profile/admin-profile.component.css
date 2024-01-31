@@ -1,0 +1,39 @@
+
+.example-container mat-form-field + mat-form-field {
+    margin-left: 8px;
+  }
+  formss{
+        text-align: center;
+        margin-top: 70px;
+
+  }
+
+  .isInvalid{
+border: 2px solid red;
+  }
+
+  .profile-infos{
+	border-left: 2px dashed #ecf0f4;
+
+	padding: 15px;
+}
+.profile-infos ul li{
+	margin-bottom: 15px;
+	font-size: 16px;
+	font-weight: 500;
+	word-wrap: break-word;
+}
+.profile-infos ul li span{
+	display: block;
+	font-size: 16px;
+	color: #1b00ff;
+	font-weight: 500;
+	padding-bottom: 5px;
+}
+.profile-infos ul li:last-child{
+	margin-bottom: 0;
+}
+button{
+    background: none;
+    border: none;
+}

@@ -1,0 +1,78 @@
+<app-instructor-header></app-instructor-header>
+<app-instructor-sidebar></app-instructor-sidebar>
+<div class="main-container">
+    <div class="row">
+        <div class="job-card">
+            <div class="job-title-section">
+            <h2 class="job-title">{{this._instructorService.studentsSolution[0].title}} - Students Submissions</h2>
+        </div>
+    </div>
+    <div class="job-card row" >
+        <table class="table">
+            <thead>
+              <tr  >
+                <th>Student Name</th>
+                <th>Submitted File</th>
+                <th>Attemp Date</th>
+                <th>Student Grade</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let section of this._instructorService.studentsSolution">
+                <td>
+                  <h4 class="job-title" id="trackname">{{section.firstname}} {{section.lastname}}</h4>
+                </td>
+                <td *ngIf="section.usersolutiontext !=null">
+                  <a href="/assets/uploads/{{ section.usersolutiontext}}" download target="_blank">
+                    <i class="fa fa-file-pdf-o" id="pdfIcon" style="margin-bottom: 10px;"></i>
+                  </a>   Assignment 
+                </td>
+                <td *ngIf="section.usersolutiontext ===null">
+                    There is No submission
+                </td>
+                <td *ngIf="section.attemptdate !=null">
+                    Attemp Date: {{ section.attemptdate | date: 'MMM d, y' }}
+                </td>
+                <td *ngIf="section.attemptdate ===null">
+                  There is No submission
+                </td>
+                <td *ngIf="section.studentgrade !==null">
+                 {{section.studentgrade}} <button class="update2"  (click)="OpenUpdateDialog(section.userid)">
+                  <i class="fa-regular fa-pen-to-square"></i>
+              </button>
+                </td>
+                <td *ngIf="section.studentgrade ===null">
+                    <input class="form-control form-control-lg grade"
+                    style=" max-width: 150px;"
+                    type="text"
+                    placeholder="Student Grade"
+                    [(ngModel)]="section.studentgrade"
+                    (input)="onGradeInputChange(section)" >
+                </td>
+              </tr>
+<!--  -->
+            </tbody>
+          </table>
+          <hr>
+          <div  id="buttonsstyle">
+ 
+            <button *ngIf="this.studentsGrades.length > 0" (click)="saveAllGrades()" id="uploadButton">Save</button>
+        </div>
+    </div> 
+</div>
+<!-- UpdateGradeDialog Template -->
+<ng-template #updateGrade>
+    <form style="display: flex; flex-direction: column; align-items: center; padding-top: 10px;">
+      <div class="example-container">
+        <mat-form-field>
+          <mat-label>New Grade</mat-label>
+          <input required style="width: 180px; border-radius: 4px; height: 40px; padding: 8px; border: 1px solid #ccc;" [formControl]="gradeFormControl" placeholder="New Grade" [value]="this._instructorService.userGrade">
+        </mat-form-field>
+      </div>
+  
+      <div style="width: fit-content; margin-top: 10px;">
+        <input type="button" class="btn btn-primary ms-10" [disabled]="gradeFormControl.invalid" mat-dialog-close mat-raised-button value="Update" (click)="UpdateGrade()">
+      </div>
+    </form>
+  </ng-template>
+  
